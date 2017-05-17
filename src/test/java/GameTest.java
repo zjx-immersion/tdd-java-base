@@ -19,8 +19,11 @@ public class GameTest {
 
     @Test
     public void should_return_0A0B_when_no_number_is_correct() {
+        //when
+        String inputAnswerStr = "5 6 7 8";
+        String expectValue = "0A0B";
         //then
-        validateGuessNumber(actualAnswer_1_2_3_4, "5 6 7 8", "0A0B");
+        validateGuessNumber(actualAnswer_1_2_3_4, inputAnswerStr, expectValue);
     }
 
     @Test
@@ -35,15 +38,21 @@ public class GameTest {
 
     @Test
     public void should_return_0A2B_when_2_and_4_are_include() {
+        //when
+        String inputAnswerStr = "2 4 7 8";
+        String expectValue = "0A2B";
         //then
-        validateGuessNumber(actualAnswer_1_2_3_4, "2 4 7 8", "0A2B");
+        validateGuessNumber(actualAnswer_1_2_3_4, inputAnswerStr, expectValue);
     }
 
 
     @Test
     public void should_return_2A2B_when_1_3_are_correct_and_4_2_are_include() {
+        //when
+        String inputAnswerStr = "1 4 3 2";
+        String expectValue = "2A2B";
         //then
-        validateGuessNumber(actualAnswer_1_2_3_4, "1 4 3 2", "2A2B");
+        validateGuessNumber(actualAnswer_1_2_3_4, inputAnswerStr, expectValue);
     }
 
     private void validateGuessNumber(String actualAnswerStr, String inputAnswerStr, String expectValue) {

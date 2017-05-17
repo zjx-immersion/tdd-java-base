@@ -1,3 +1,5 @@
+import model.Record;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +10,7 @@ import java.util.stream.Collectors;
 public class Answer {
 
 
-    private List<String> NumList;
+    private List<String> numList;
 
     public static Answer createAnswer(String inputStr) {
         Answer answer = new Answer();
@@ -16,11 +18,26 @@ public class Answer {
         return answer;
     }
 
+    public Record check(Answer inputAnswer) {
+        Record record = new Record();
+        this.numList.forEach(num -> {
+            int index = inputAnswer.getNumList().indexOf(num);
+            if (index != -1) {
+                if (index == this.numList.indexOf(num)) {
+                    record.increaseCurrentNum();
+                } else {
+                    record.increaseIncludeOnlyNum();
+                }
+            }
+        });
+        return record;
+    }
+
     public List<String> getNumList() {
-        return NumList;
+        return numList;
     }
 
     public void setNumList(List<String> numList) {
-        this.NumList = numList;
+        this.numList = numList;
     }
 }

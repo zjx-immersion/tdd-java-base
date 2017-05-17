@@ -9,17 +9,7 @@ public class Game {
     }
 
     public String guess(Answer inputAnswer) {
-        final int[] existRecord = {0, 0};
-        this.actualAnswer.getNumList().forEach(num -> {
-            int index = inputAnswer.getNumList().indexOf(num);
-            if (index != -1) {
-                if (index == actualAnswer.getNumList().indexOf(num)) {
-                    existRecord[0]++;
-                } else {
-                    existRecord[1]++;
-                }
-            }
-        });
+        final int[] existRecord = actualAnswer.check(inputAnswer).getValue();
         return String.format("%1$sA%2$sB", existRecord[0], existRecord[1]);
     }
 }
