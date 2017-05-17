@@ -4,6 +4,8 @@
 
 import org.junit.Before;
 import org.junit.Test;
+import tw.Answer;
+import tw.Game;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
