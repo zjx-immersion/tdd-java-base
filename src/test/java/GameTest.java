@@ -6,18 +6,29 @@ import org.junit.Before;
 import org.junit.Test;
 import tw.Answer;
 import tw.Game;
+import tw.model.GuessResult;
+import tw.generator.AnswerGenerator;
+
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class GameTest {
 
-    private String actualAnswer_1_2_3_4;
+
+    private final Answer actualAnswer = Answer.createAnswer("1 2 3 4");
+    private Game game;
 
     @Before
     public void setUp() throws Exception {
-        actualAnswer_1_2_3_4 = "1 2 3 4";
+        AnswerGenerator answerGenerator = mock(AnswerGenerator.class);
+        when(answerGenerator.generate()).thenReturn(actualAnswer);
+        game = new Game(answerGenerator);
     }
+
 
     @Test
     public void should_return_0A0B_when_no_number_is_correct() {
@@ -25,7 +36,7 @@ public class GameTest {
         String inputAnswerStr = "5 6 7 8";
         String expectValue = "0A0B";
         //then
-        validateGuessNumber(actualAnswer_1_2_3_4, inputAnswerStr, expectValue);
+        validateGuessNumber(inputAnswerStr, expectValue);
     }
 
     @Test
@@ -35,7 +46,7 @@ public class GameTest {
         String expectValue = "1A0B";
 
         //then
-        validateGuessNumber(actualAnswer_1_2_3_4, inputAnswerStr, expectValue);
+        validateGuessNumber(inputAnswerStr, expectValue);
     }
 
     @Test
@@ -44,7 +55,7 @@ public class GameTest {
         String inputAnswerStr = "2 4 7 8";
         String expectValue = "0A2B";
         //then
-        validateGuessNumber(actualAnswer_1_2_3_4, inputAnswerStr, expectValue);
+        validateGuessNumber(inputAnswerStr, expectValue);
     }
 
 
@@ -54,12 +65,25 @@ public class GameTest {
         String inputAnswerStr = "1 4 3 2";
         String expectValue = "2A2B";
         //then
-        validateGuessNumber(actualAnswer_1_2_3_4, inputAnswerStr, expectValue);
+        validateGuessNumber(inputAnswerStr, expectValue);
     }
 
-    private void validateGuessNumber(String actualAnswerStr, String inputAnswerStr, String expectValue) {
-        Answer actualAnswer = Answer.createAnswer(actualAnswerStr);
-        Game game = new Game(actualAnswer);
+    @Test
+    public void should_record_every_guess_result() {
+        game.guess(Answer.createAnswer("2 1 6 7"));
+        game.guess(Answer.createAnswer("1 2 3 4"));
+
+        List<GuessResult> guessResults = game.guessHistory();
+
+        assertThat(guessResults.size(), is(2));
+        assertThat(guessResults.get(0).result(), is("0A2B"));
+        assertThat(guessResults.get(0).inputAnswer().toString(), is("2 1 6 7"));
+
+        assertThat(guessResults.get(1).result(), is("4A0B"));
+        assertThat(guessResults.get(1).inputAnswer().toString(), is("1 2 3 4"));
+    }
+
+    private void validateGuessNumber(String inputAnswerStr, String expectValue) {
         Answer inputAnswer = Answer.createAnswer(inputAnswerStr);
 
         //when

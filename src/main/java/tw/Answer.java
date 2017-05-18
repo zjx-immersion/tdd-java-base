@@ -56,4 +56,8 @@ public class Answer {
         return this.numList.indexOf(num);
     }
 
+    @Override
+    public String toString() {
+        return String.join(" ", numList);
+    }
 }
