@@ -17,11 +17,8 @@ public class AnswerGenerator {
     }
 
     public Answer generate() throws OutOfRangeAnswerException {
-        List<String> numList = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            numList.add(this.randomIntGenerator.nextInt().toString());
-        }
-        Answer answer = Answer.createAnswer(String.join(" ", numList));
+        String RadomNumStr = this.randomIntGenerator.generateNums(9, 4);
+        Answer answer = Answer.createAnswer(RadomNumStr);
         answer.validate();
         return answer;
     }
