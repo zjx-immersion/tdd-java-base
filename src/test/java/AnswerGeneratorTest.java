@@ -21,6 +21,7 @@ public class AnswerGeneratorTest {
         AnswerGenerator answerGenerator = new AnswerGenerator(randomIntGenerator);
 
         answerGenerator.generate();
+
     }
 
     @Test
