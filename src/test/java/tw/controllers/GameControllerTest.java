@@ -10,6 +10,7 @@ import tw.commands.InputCommand;
 import tw.generator.AnswerGenerator;
 import tw.views.GameView;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
@@ -56,7 +57,7 @@ public class GameControllerTest {
         gameController.play(mockCommand);
 
         //then
-        verify(mockGameView).showMessage(anyString());
+        verify(mockGameView).showMessage(any());
     }
 
 

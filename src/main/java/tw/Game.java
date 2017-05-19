@@ -19,11 +19,12 @@ public class Game {
         this.guessResults = new ArrayList();
     }
 
-    public String guess(Answer inputAnswer) {
+    public GuessResult guess(Answer inputAnswer) {
         final int[] existRecord = actualAnswer.check(inputAnswer).getValue();
         String result = String.format("%1$sA%2$sB", existRecord[0], existRecord[1]);
-        guessResults.add(new GuessResult(result, inputAnswer));
-        return result;
+        GuessResult guessResult = new GuessResult(result, inputAnswer);
+        guessResults.add(guessResult);
+        return guessResult;
     }
 
     public List<GuessResult> guessHistory() {

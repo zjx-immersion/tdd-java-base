@@ -2,6 +2,7 @@ package tw.controllers;
 
 import tw.Game;
 import tw.commands.InputCommand;
+import tw.model.GuessResult;
 import tw.views.GameView;
 
 /**
@@ -18,7 +19,7 @@ public class GameController {
     }
 
     public void play(InputCommand command) {
-        String guessResult = game.guess(command.input());
+        GuessResult guessResult = game.guess(command.input());
         gameView.showMessage(guessResult);
     }
 }

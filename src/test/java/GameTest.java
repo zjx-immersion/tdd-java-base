@@ -87,9 +87,9 @@ public class GameTest {
         Answer inputAnswer = Answer.createAnswer(inputAnswerStr);
 
         //when
-        String result = game.guess(inputAnswer);
+        GuessResult result = game.guess(inputAnswer);
 
         //then
-        assertThat(result, is(expectValue));
+        assertThat(result.result(), is(expectValue));
     }
 }
