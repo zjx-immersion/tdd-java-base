@@ -1,4 +1,4 @@
-package tw.generator;
+package tw.controllers;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,8 +6,14 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import tw.Answer;
 import tw.Game;
+import tw.commands.InputCommand;
+import tw.generator.AnswerGenerator;
+import tw.views.GameView;
 
 import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -50,7 +56,9 @@ public class GameControllerTest {
         gameController.play(mockCommand);
 
         //then
-        verify(mockGameView).showGuessHistory(anyList());
+        verify(mockGameView).showMessage(anyString());
     }
+
+
 }
 
