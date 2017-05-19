@@ -12,15 +12,15 @@ public class RandomIntGenerator {
     public RandomIntGenerator() {
     }
 
-    public String generateNums(Integer digitmax, Integer numbersNeeded) {
+    public String generateNums(Integer digitmax, Integer numbersOfNeed) {
 
-        if (digitmax < numbersNeeded) {
+        if (digitmax < numbersOfNeed) {
             throw new IllegalArgumentException("Can't ask for more numbers than are available");
         }
 
         Random rng = new Random();
         Set<String> generated = new LinkedHashSet<>();
-        while (generated.size() < numbersNeeded) {
+        while (generated.size() < numbersOfNeed) {
             Integer next = rng.nextInt(digitmax - 1) + 1;
             generated.add(next.toString());
         }
