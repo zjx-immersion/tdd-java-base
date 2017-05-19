@@ -30,4 +30,12 @@ public class Game {
     public List<GuessResult> guessHistory() {
         return guessResults;
     }
+
+    public boolean checkCoutinue() {
+        return false;
+    }
+
+    public String checkStatus() {
+        return null;
+    }
 }

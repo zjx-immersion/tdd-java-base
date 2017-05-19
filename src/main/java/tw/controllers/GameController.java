@@ -19,7 +19,17 @@ public class GameController {
     }
 
     public void play(InputCommand command) {
-        GuessResult guessResult = game.guess(command.input());
-        gameView.showMessage(guessResult);
+        if (game.checkCoutinue()) {
+            GuessResult guessResult = game.guess(command.input());
+            gameView.showMessage(guessResult);
+        }
+    }
+
+    public void checkResult() {
+        gameView.showResult(game.checkStatus());
+    }
+
+    public void showGuessHistory() {
+        gameView.showGuessHistory(game.guessHistory());
     }
 }
