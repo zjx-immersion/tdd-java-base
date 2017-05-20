@@ -11,11 +11,10 @@ import tw.generator.AnswerGenerator;
 import tw.model.GuessResult;
 import tw.views.GameView;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -50,10 +49,12 @@ public class GameControllerTest {
     }
 
     @Test
-    public void should_display_guess_result_when_call_controller_play() {
+    public void should_display_guess_result_when_call_controller_play() throws IOException {
         //given
-        when(mockCommand.input()).thenReturn(errorAnswer);
-        when(game.checkCoutinue()).thenReturn(true);
+        when(mockCommand.input()).thenReturn(correctAnswer);
+        when(game.guessHistory()).thenReturn(new ArrayList<>());
+        when(game.checkStatus()).thenReturn("");
+        when(game.checkCoutinue()).thenReturn(true, false);
         when(game.guess(errorAnswer)).thenReturn(new GuessResult("", errorAnswer));
         GameController gameController = new GameController(game, mockGameView);
 
@@ -61,30 +62,34 @@ public class GameControllerTest {
         gameController.play(mockCommand);
 
         //then
-        verify(mockGameView).showMessage(any());
+        verify(mockGameView).showGuessResult(any());
+        verify(mockGameView).showGuessHistory(anyList());
+        verify(mockGameView).showGameStatus(anyString());
     }
 
     @Test
-    public void should_get_the_result_of_game_when_call_the_checkResult() {
+    public void should_display_end_result_when_game_failde() throws IOException {
         //given
-        when(game.checkStatus()).thenReturn("any status");
+        when(mockCommand.input()).thenReturn(errorAnswer);
+        when(game.checkStatus()).thenReturn("");
+        when(game.checkCoutinue()).thenReturn(false);
+        GameController gameController = new GameController(game, mockGameView);
+
         //when
-        gameController.checkResult();
+        gameController.play(mockCommand);
 
         //then
-        verify(mockGameView).showResult(eq("any status"));
+        verify(mockGameView).showGameStatus(anyString());
     }
 
     @Test
-    public void should_get_history_of_guess_when_call_guessHistory() throws Exception {
+    public void should_begin_guess_game_when_call_begin_game() throws Exception {
         //given
-        List<GuessResult> guessResults = new ArrayList<>();
-        when(game.guessHistory()).thenReturn(guessResults);
         //when
-        gameController.showGuessHistory();
+        gameController.beginGame();
 
         //then
-        verify(mockGameView).showGuessHistory(eq(guessResults));
+        verify(mockGameView).showBegin();
 
     }
 }

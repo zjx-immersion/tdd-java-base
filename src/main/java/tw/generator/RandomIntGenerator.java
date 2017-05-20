@@ -21,7 +21,7 @@ public class RandomIntGenerator {
         Random rng = new Random();
         Set<String> generated = new LinkedHashSet<>();
         while (generated.size() < numbersOfNeed) {
-            Integer next = rng.nextInt(digitmax - 1) + 1;
+            Integer next = rng.nextInt(digitmax);
             generated.add(next.toString());
         }
         return String.join(" ", generated);

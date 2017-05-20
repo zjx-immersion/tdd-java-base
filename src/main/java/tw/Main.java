@@ -1,23 +1,28 @@
 package tw;
 
-import java.util.Random;
+import tw.commands.GuessInputCommand;
+import tw.controllers.GameController;
+import tw.exception.OutOfRangeAnswerException;
+import tw.generator.AnswerGenerator;
+import tw.generator.RandomIntGenerator;
+import tw.views.GameView;
 
 /**
  * Created by jxzhong on 2017/5/16.
  */
 public class Main {
-    public static void main(String[] args) {
-        int[] array = {0,1,2,3,4,5,6,7,8,9};
-        Random rand = new Random();
-        for (int i = 10; i > 1; i--) {
-            int index = rand.nextInt(i);
-            int tmp = array[index];
-            array[index] = array[i - 1];
-            array[i - 1] = tmp;
-        }
-        int result = 0;
-        for(int i = 0; i < 6; i++)
-            result = result * 10 + array[i];
-        System.out.println(result);
+
+    public static void main(String[] args) throws Exception {
+
+        GameController gameController = createGameController();
+        gameController.beginGame();
+        gameController.play(new GuessInputCommand());
+
+    }
+
+    private static GameController createGameController() throws OutOfRangeAnswerException {
+        GameView gameView = new GameView();
+        Game game = new Game(new AnswerGenerator(new RandomIntGenerator()));
+        return new GameController(game, gameView);
     }
 }

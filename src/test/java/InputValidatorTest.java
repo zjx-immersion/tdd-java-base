@@ -1,5 +1,5 @@
 import org.junit.Test;
-import validator.InputValidator;
+import tw.validator.InputValidator;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
