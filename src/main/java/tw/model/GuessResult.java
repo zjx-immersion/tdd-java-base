@@ -14,11 +14,11 @@ public class GuessResult {
         this.inputAnswer = inputAnswer;
     }
 
-    public String result() {
+    public String getResult() {
         return result;
     }
 
-    public Answer inputAnswer() {
+    public Answer getInputAnswer() {
         return inputAnswer;
     }
 }

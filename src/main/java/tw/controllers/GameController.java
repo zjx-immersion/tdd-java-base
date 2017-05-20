@@ -9,7 +9,6 @@ import tw.views.GameView;
  * Created by jxzhong on 2017/5/19.
  */
 public class GameController {
-    private static final int MAX_TIMES = 6;
     private final Game game;
     private final GameView gameView;
 

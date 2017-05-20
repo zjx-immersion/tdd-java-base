@@ -11,8 +11,14 @@ import java.util.List;
  * Created by jxzhong on 2017/5/16.
  */
 public class Game {
+
+    private final static String FAIL = "fail";
+    private final static String SUCCESS = "success";
+    private final static String CONTINUE = "continue";
+    private static final int MAX_TIMES = 6;
     private final Answer actualAnswer;
     private final List<GuessResult> guessResults;
+    private final String CORRECT_RESULT_STANDAR = "4A0B";
 
     public Game(AnswerGenerator answerGenerator) throws OutOfRangeAnswerException {
         this.actualAnswer = answerGenerator.generate();
@@ -32,10 +38,22 @@ public class Game {
     }
 
     public boolean checkCoutinue() {
-        return false;
+        return this.checkStatus() == CONTINUE;
     }
 
     public String checkStatus() {
-        return null;
+        String status;
+        if (guessResults.size() >= MAX_TIMES) {
+            status = FAIL;
+        } else if (checkCorrectGuessResult()) {
+            status = SUCCESS;
+        } else {
+            status = CONTINUE;
+        }
+        return status;
+    }
+
+    private boolean checkCorrectGuessResult() {
+        return guessResults.stream().anyMatch(result -> result.getResult().contentEquals(CORRECT_RESULT_STANDAR));
     }
 }
