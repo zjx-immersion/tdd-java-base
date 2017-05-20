@@ -1,5 +1,6 @@
 package tw.controllers;
 
+import com.google.inject.Inject;
 import tw.core.Game;
 import tw.commands.InputCommand;
 import tw.core.model.GuessResult;
@@ -14,7 +15,7 @@ public class GameController {
     private final Game game;
     private final GameView gameView;
 
-    //todo use IOC to inject the instances
+    @Inject
     public GameController(Game game, GameView gameView) {
         this.game = game;
         this.gameView = gameView;

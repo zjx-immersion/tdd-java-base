@@ -1,5 +1,6 @@
 package tw.core;
 
+import com.google.inject.Inject;
 import tw.core.exception.OutOfRangeAnswerException;
 import tw.core.generator.AnswerGenerator;
 import tw.core.model.GuessResult;
@@ -21,6 +22,7 @@ public class Game {
     private final List<GuessResult> guessResults;
     private final String CORRECT_RESULT_STANDAR = "4A0B";
 
+    @Inject
     public Game(AnswerGenerator answerGenerator) throws OutOfRangeAnswerException {
         this.actualAnswer = answerGenerator.generate();
         this.guessResults = new ArrayList();

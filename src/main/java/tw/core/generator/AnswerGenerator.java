@@ -1,5 +1,6 @@
 package tw.core.generator;
 
+import com.google.inject.Inject;
 import tw.core.Answer;
 import tw.core.exception.OutOfRangeAnswerException;
 
@@ -9,6 +10,7 @@ import tw.core.exception.OutOfRangeAnswerException;
 public class AnswerGenerator {
     private final RandomIntGenerator randomIntGenerator;
 
+    @Inject
     public AnswerGenerator(RandomIntGenerator randomIntGenerator) {
         this.randomIntGenerator = randomIntGenerator;
     }
