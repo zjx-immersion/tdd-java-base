@@ -4,10 +4,10 @@
 
 import org.junit.Before;
 import org.junit.Test;
-import tw.Answer;
-import tw.Game;
-import tw.generator.AnswerGenerator;
-import tw.model.GuessResult;
+import tw.core.Answer;
+import tw.core.Game;
+import tw.core.generator.AnswerGenerator;
+import tw.core.model.GuessResult;
 
 import java.util.List;
 

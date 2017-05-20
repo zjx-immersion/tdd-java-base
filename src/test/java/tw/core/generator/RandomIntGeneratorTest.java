@@ -1,4 +1,4 @@
-package tw.generator;
+package tw.core.generator;
 
 import org.junit.Before;
 import org.junit.Test;

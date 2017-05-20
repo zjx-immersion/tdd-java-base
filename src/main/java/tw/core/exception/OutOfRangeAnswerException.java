@@ -1,4 +1,4 @@
-package tw.exception;
+package tw.core.exception;
 
 /**
  * Created by jxzhong on 2017/5/17.

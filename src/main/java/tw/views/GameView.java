@@ -1,10 +1,6 @@
 package tw.views;
 
-import tw.Answer;
-import tw.commands.GuessInputCommand;
-import tw.commands.InputCommand;
-import tw.model.GuessResult;
-import tw.validator.InputValidator;
+import tw.core.model.GuessResult;
 
 import java.io.BufferedReader;
 import java.io.IOException;

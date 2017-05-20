@@ -1,6 +1,6 @@
 package tw.commands;
 
-import tw.Answer;
+import tw.core.Answer;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package tw.generator;
+package tw.core.generator;
 
 import java.util.LinkedHashSet;
 import java.util.Random;

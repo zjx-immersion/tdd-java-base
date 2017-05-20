@@ -4,11 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import tw.Answer;
-import tw.Game;
+import tw.core.Answer;
+import tw.core.Game;
 import tw.commands.InputCommand;
-import tw.generator.AnswerGenerator;
-import tw.model.GuessResult;
+import tw.core.generator.AnswerGenerator;
+import tw.core.model.GuessResult;
 import tw.views.GameView;
 
 import java.io.IOException;

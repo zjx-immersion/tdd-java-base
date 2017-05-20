@@ -1,8 +1,8 @@
 package tw.controllers;
 
-import tw.Game;
+import tw.core.Game;
 import tw.commands.InputCommand;
-import tw.model.GuessResult;
+import tw.core.model.GuessResult;
 import tw.views.GameView;
 
 import java.io.IOException;

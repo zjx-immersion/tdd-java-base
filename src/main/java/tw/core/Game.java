@@ -1,20 +1,21 @@
-package tw;
+package tw.core;
 
-import tw.exception.OutOfRangeAnswerException;
-import tw.generator.AnswerGenerator;
-import tw.model.GuessResult;
+import tw.core.exception.OutOfRangeAnswerException;
+import tw.core.generator.AnswerGenerator;
+import tw.core.model.GuessResult;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static tw.core.GameStatus.CONTINUE;
+import static tw.core.GameStatus.FAIL;
+import static tw.core.GameStatus.SUCCESS;
 
 /**
  * Created by jxzhong on 2017/5/16.
  */
 public class Game {
 
-    private final static String FAIL = "fail";
-    private final static String SUCCESS = "success";
-    private final static String CONTINUE = "continue";
     private static final int MAX_TIMES = 6;
     private final Answer actualAnswer;
     private final List<GuessResult> guessResults;

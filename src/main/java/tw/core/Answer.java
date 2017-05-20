@@ -1,7 +1,7 @@
-package tw;
+package tw.core;
 
-import tw.exception.OutOfRangeAnswerException;
-import tw.model.Record;
+import tw.core.exception.OutOfRangeAnswerException;
+import tw.core.model.Record;
 
 import java.util.Arrays;
 import java.util.List;

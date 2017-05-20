@@ -2,9 +2,10 @@ package tw;
 
 import tw.commands.GuessInputCommand;
 import tw.controllers.GameController;
-import tw.exception.OutOfRangeAnswerException;
-import tw.generator.AnswerGenerator;
-import tw.generator.RandomIntGenerator;
+import tw.core.Game;
+import tw.core.exception.OutOfRangeAnswerException;
+import tw.core.generator.AnswerGenerator;
+import tw.core.generator.RandomIntGenerator;
 import tw.views.GameView;
 
 /**

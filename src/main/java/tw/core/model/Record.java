@@ -1,4 +1,4 @@
-package tw.model;
+package tw.core.model;
 
 public class Record {
     private int[] value;

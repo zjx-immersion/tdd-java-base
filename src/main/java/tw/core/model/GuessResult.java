@@ -1,6 +1,6 @@
-package tw.model;
+package tw.core.model;
 
-import tw.Answer;
+import tw.core.Answer;
 
 /**
  * Created by jxzhong on 2017/5/18.

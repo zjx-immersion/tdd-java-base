@@ -1,7 +1,7 @@
-package tw.generator;
+package tw.core.generator;
 
-import tw.Answer;
-import tw.exception.OutOfRangeAnswerException;
+import tw.core.Answer;
+import tw.core.exception.OutOfRangeAnswerException;
 
 /**
  * Created by jxzhong on 2017/5/17.

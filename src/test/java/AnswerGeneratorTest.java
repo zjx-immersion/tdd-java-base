@@ -1,7 +1,7 @@
-import tw.Answer;
-import tw.exception.OutOfRangeAnswerException;
-import tw.generator.AnswerGenerator;
-import tw.generator.RandomIntGenerator;
+import tw.core.Answer;
+import tw.core.exception.OutOfRangeAnswerException;
+import tw.core.generator.AnswerGenerator;
+import tw.core.generator.RandomIntGenerator;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
