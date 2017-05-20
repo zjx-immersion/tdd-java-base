@@ -21,6 +21,7 @@ public class Main {
 
     }
 
+    //todo create a factory to create the controller
     private static GameController createGameController() throws OutOfRangeAnswerException {
         GameView gameView = new GameView();
         Game game = new Game(new AnswerGenerator(new RandomIntGenerator()));

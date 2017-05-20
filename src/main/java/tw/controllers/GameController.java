@@ -14,6 +14,7 @@ public class GameController {
     private final Game game;
     private final GameView gameView;
 
+    //todo use IOC to inject the instances
     public GameController(Game game, GameView gameView) {
         this.game = game;
         this.gameView = gameView;
