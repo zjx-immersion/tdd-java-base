@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.LinkedList;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -29,4 +30,18 @@ public class LibraryTest {
         assertEquals(mockedList.get(0), value);
 
     }
+
+    @Test
+    public void should_get_3_when_input_1_and_2() throws Exception {
+        //when
+        int input1 = 1;
+        int input2 = 2;
+        //given
+        Caculator caculator = new Caculator();
+        int result = caculator.add(input1, input2);
+        //then
+        assertThat(result, is(3));
+
+    }
+
 }
