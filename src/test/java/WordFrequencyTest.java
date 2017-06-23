@@ -37,7 +37,7 @@ public class WordFrequencyTest {
     @Test
     public void should_handle_two_different_words_text() {
         // given
-        String text = "one two";
+        String text = "one      two";
 
         // when
         String result = WordFrequency.handle(text);
