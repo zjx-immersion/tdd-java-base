@@ -28,10 +28,10 @@ public class Answer {
     }
 
     public void validate() throws OutOfRangeAnswerException {
-        Integer validatedNum = numList.stream()
+        long validatedNum = numList.stream()
                 .map(num -> parseInt(num))
                 .distinct()
-                .filter(num -> num < 10).toArray().length;
+                .filter(num -> num < 10).count();
         if (validatedNum < numList.size()) {
             throw new OutOfRangeAnswerException("Answer format is incorrect");
         }
