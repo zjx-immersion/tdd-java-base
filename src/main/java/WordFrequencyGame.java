@@ -3,6 +3,6 @@
  */
 public class WordFrequencyGame {
     public String process(String inputStr) {
-        return null;
+        return inputStr + " " + 1;
     }
 }
