@@ -1,5 +1,7 @@
 package core;
 
+import java.util.stream.Collectors;
+
 /**
  * Created by jxzhong on 2017/7/26.
  */
@@ -12,7 +14,14 @@ public class GradeReportBuilder {
 
     public Gradereport build() {
         Gradereport gradereport = new Gradereport();
-        gradereport.setStudentInfos(this.klass.getAllStudent());
+        gradereport.setStudentGradeItems(this.klass.getAllStudent().stream()
+                .map(s -> new StudentGradeItem(
+                        s.getName(),
+                        s.getNumber(),
+                        s.getMathsScore(),
+                        s.getChineseScore(),
+                        s.getEnglishScore(),
+                        s.getProgramScore())).collect(Collectors.toList()));
         return gradereport;
     }
 }

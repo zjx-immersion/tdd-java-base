@@ -1,9 +1,9 @@
 package core;
 
 /**
- * Created by jxzhong on 2017/7/26.
+ * Created by jxzhong on 2017/7/27.
  */
-public class Student {
+public class StudentGradeItem {
 
     private String name;
     private String number;
@@ -12,7 +12,7 @@ public class Student {
     private int englishScore;
     private int programScore;
 
-    public Student(String name, String number, int mathsScore, int chineseScore, int englishScore, int programScore) {
+    public StudentGradeItem(String name, String number, int mathsScore, int chineseScore, int englishScore, int programScore) {
 
         this.name = name;
         this.number = number;
@@ -44,5 +44,13 @@ public class Student {
 
     public int getProgramScore() {
         return programScore;
+    }
+
+    public int getTotalScore() {
+        return this.chineseScore + this.getEnglishScore() + this.mathsScore + this.programScore;
+    }
+
+    public int getAvergeScore() {
+        return getTotalScore() / 4;
     }
 }
