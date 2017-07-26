@@ -11,12 +11,6 @@ public class Library {
     }
 
     public static void main(String args[]){
-
-        try {
-            String content = new String(Files.readAllBytes(Paths.get("data/words.txt")));
-            System.out.println(content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
     }
 }
