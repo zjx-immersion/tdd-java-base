@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.joining;
  */
 public class WordFrequencyGame {
     public String process(String inputStr) {
-        String[] wordArr = inputStr.split(" ");
+        String[] wordArr = inputStr.split("\\s+");
         List<Word> wordList = Arrays.stream(wordArr).map(w -> new Word(w, 1)).collect(Collectors.toList());
         wordList = wordList.stream()
                 .collect(groupingBy(w -> w.getValue()))
@@ -19,6 +19,6 @@ public class WordFrequencyGame {
                 .map(entry -> new Word(entry.getKey(), entry.getValue().size()))
                 .collect(Collectors.toList());
         wordList.sort((w1, w2) -> w2.getCount() - w1.getCount());
-        return wordList.stream().map(w -> w.getValue() + " " + w.getCount()).collect(joining("/n"));
+        return wordList.stream().map(w -> w.getValue() + " " + w.getCount()).collect(joining("\n"));
     }
 }
