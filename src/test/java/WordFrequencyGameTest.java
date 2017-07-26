@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.stream.Stream;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -17,5 +19,15 @@ public class WordFrequencyGameTest {
         assertEquals(result, "the 1");
     }
 
+    @Test
+    public void should_process_two_words() throws Exception {
+        //Given
+        String inputStr = "the is";
+        WordFrequencyGame game = new WordFrequencyGame();
+        //When
+        String result = game.process(inputStr);
 
+        //Then
+        assertEquals(result, "the 1/nis 1");
+    }
 }
