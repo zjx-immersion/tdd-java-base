@@ -1,7 +1,4 @@
-import command.AddStuCommand;
-import command.Command;
-import command.ExitCommand;
-import command.GenGradereportCommand;
+import command.*;
 
 /**
  * Created by jxzhong on 2017/7/27.
@@ -14,7 +11,7 @@ public class RouteController {
         Command command;
         switch (order) {
             case "0":
-                command = new Command(order);
+                command = new MainMenuCommand(order);
                 break;
             case "1":
                 command = new AddStuCommand(order);
