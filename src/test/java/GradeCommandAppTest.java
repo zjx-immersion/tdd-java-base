@@ -10,10 +10,10 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class LibraryTest {
+public class GradeCommandAppTest {
     @Test
     public void testSomeLibraryMethod() {
-        Library classUnderTest = new Library();
+        GradeCommandApp classUnderTest = new GradeCommandApp();
         assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
     }
 

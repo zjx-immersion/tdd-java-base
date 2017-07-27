@@ -1,3 +1,5 @@
+package core;
+
 import core.Klass;
 import core.Student;
 import org.junit.Test;
