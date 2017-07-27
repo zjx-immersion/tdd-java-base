@@ -7,16 +7,17 @@ import java.util.stream.Collectors;
  * Created by jxzhong on 2017/7/26.
  */
 public class GradeReportBuilder {
-    private final Klass klass;
+    private Klass klass;
 
     public GradeReportBuilder(Klass klass) {
         this.klass = klass;
     }
 
-    public Gradereport buildIndicatedStuReport(List<Student> stuLIst) {
+    public Gradereport buildIndicatedStuReport(List<Student> stuList) {
         Gradereport gradereport = new Gradereport();
+        List<Student> stus = this.klass.getAllStudent();
         gradereport.setStudentGradeItems(this.klass.getAllStudent().stream()
-                .filter(s -> stuLIst.stream().anyMatch(indicatedStu -> indicatedStu.getNumber() == s.getNumber()))
+                .filter(s -> stuList.stream().anyMatch(indicatedStu -> indicatedStu.getNumber().equals(s.getNumber())))
                 .map(s -> new StudentGradeItem(
                         s.getName(),
                         s.getNumber(),

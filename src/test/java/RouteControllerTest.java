@@ -16,10 +16,12 @@ public class RouteControllerTest {
         Command command = routeController.generateCommand("0");
         //Then
         assertEquals(command.getState(), "0");
-        assertEquals(command.getContent(), "1. 添加学生\n" +
+        assertEquals(command.getContent(), "***********\n" +
+                "1. 添加学生\n" +
                 "2. 生成成绩单\n" +
                 "3. 退出\n" +
-                "请输入你的选择（1～3）");
+                "请输入你的选择（1～3):\n" +
+                "***********\n");
     }
 
     @Test

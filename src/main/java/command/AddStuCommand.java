@@ -29,6 +29,7 @@ public class AddStuCommand extends Command {
                 input();
             }
             getStudentGradeService().addStudent(stu);
+            System.out.println();
             routeController.generateCommand("0").input();
 
         } catch (IOException e) {

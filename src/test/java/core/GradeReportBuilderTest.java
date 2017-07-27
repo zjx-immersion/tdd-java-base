@@ -102,5 +102,6 @@ public class GradeReportBuilderTest {
 
         //Then
         assertEquals(report.getStudentGradeItems().size(), 1);
+        assertEquals(report.getStudentGradeItems().get(0).getNumber(), "1");
     }
 }

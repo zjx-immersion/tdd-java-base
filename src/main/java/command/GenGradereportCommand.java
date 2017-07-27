@@ -30,6 +30,7 @@ public class GenGradereportCommand extends Command {
                 this.setContent(ERROR_CONTENT);
                 input();
             }
+            System.out.println();
             Gradereport gradereport = getStudentGradeService().generateReport(stus);
             System.out.println(Transformer.formatReportText(gradereport));
             routeController.generateCommand("0").input();
