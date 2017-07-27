@@ -8,7 +8,6 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
@@ -33,7 +32,7 @@ public class GradeReportBuilderTest {
         when(klass.getAllStudent()).thenReturn(students);
 
         //When
-        Gradereport report = reportBuilder.build();
+        Gradereport report = reportBuilder.buildIndicatedStuReport(students);
 
         //Then
         assertEquals(report.getStudentGradeItems().size(), gradeItems.size());
@@ -56,7 +55,7 @@ public class GradeReportBuilderTest {
         when(klass.getAllStudent()).thenReturn(students);
 
         //When
-        Gradereport report = reportBuilder.build();
+        Gradereport report = reportBuilder.buildIndicatedStuReport(students);
 
         //Then
         assertThat(report.getStudentGradeItems().get(0).getTotalScore(), is(376));
@@ -75,10 +74,32 @@ public class GradeReportBuilderTest {
         when(klass.getAllStudent()).thenReturn(students);
 
         //When
-        Gradereport report = reportBuilder.build();
+        Gradereport report = reportBuilder.buildIndicatedStuReport(students);
 
         //Then
         assertThat(report.getTotalScore(), is(736));
         assertThat(report.getAvergeScore(), is(368));
+    }
+
+
+    @Test
+    public void shoule_get_indicated_stus_report_when_include_un_exist_stu_input() throws Exception {
+        GradeReportBuilder reportBuilder = new GradeReportBuilder(klass);
+        List<Student> students = asList(
+                new Student("Tom", "1", 90, 88, 98, 100),
+                new Student("Jim", "2", 95, 93, 92, 80)
+        );
+        when(klass.getAllStudent()).thenReturn(students);
+
+        List<Student> indicatedStudents = asList(
+                new Student("Tom", "1", 90, 88, 98, 100),
+                new Student("Jason", "3", 95, 93, 92, 80)
+        );
+
+        //When
+        Gradereport report = reportBuilder.buildIndicatedStuReport(indicatedStudents);
+
+        //Then
+        assertEquals(report.getStudentGradeItems().size(), 1);
     }
 }

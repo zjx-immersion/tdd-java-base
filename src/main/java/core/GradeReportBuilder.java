@@ -1,5 +1,6 @@
 package core;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -12,9 +13,10 @@ public class GradeReportBuilder {
         this.klass = klass;
     }
 
-    public Gradereport build() {
+    public Gradereport buildIndicatedStuReport(List<Student> stuLIst) {
         Gradereport gradereport = new Gradereport();
         gradereport.setStudentGradeItems(this.klass.getAllStudent().stream()
+                .filter(s -> stuLIst.stream().anyMatch(indicatedStu -> indicatedStu.getNumber() == s.getNumber()))
                 .map(s -> new StudentGradeItem(
                         s.getName(),
                         s.getNumber(),
