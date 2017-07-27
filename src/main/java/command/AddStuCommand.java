@@ -1,7 +1,7 @@
 package command;
 
 import core.Student;
-import transform.InputTransformer;
+import transform.Transformer;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class AddStuCommand extends Command {
         System.out.println(this.getContent());
         try {
             String input = bufferedReader.readLine();
-            Student stu = InputTransformer.formatStudent(input);
+            Student stu = Transformer.formatStudent(input);
             if (stu == null) {
                 this.setContent(ERROR_CONTENT);
                 input();

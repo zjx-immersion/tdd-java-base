@@ -1,7 +1,8 @@
 package command;
 
+import core.Gradereport;
 import core.Student;
-import transform.InputTransformer;
+import transform.Transformer;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,12 +25,13 @@ public class GenGradereportCommand extends Command {
         System.out.println(this.getContent());
         try {
             String input = bufferedReader.readLine();
-            List<Student> stus = InputTransformer.formatStudentNos(input);
+            List<Student> stus = Transformer.formatStudentNos(input);
             if (stus.isEmpty()) {
                 this.setContent(ERROR_CONTENT);
                 input();
             }
-            getStudentGradeService().generateReport(stus);
+            Gradereport gradereport = getStudentGradeService().generateReport(stus);
+            System.out.println(Transformer.formatReportText(gradereport));
             routeController.generateCommand("0").input();
 
         } catch (IOException e) {

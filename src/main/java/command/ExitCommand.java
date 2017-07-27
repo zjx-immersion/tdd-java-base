@@ -1,10 +1,6 @@
 package command;
 
-import core.Student;
-import transform.InputTransformer;
-
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by jxzhong on 2017/7/27.

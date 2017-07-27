@@ -22,6 +22,10 @@ public class Student {
         this.programScore = programScore;
     }
 
+    public Student(String num) {
+        this.number = num;
+    }
+
     public String getName() {
         return name;
     }
