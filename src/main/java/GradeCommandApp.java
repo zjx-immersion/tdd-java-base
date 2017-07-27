@@ -1,3 +1,6 @@
+import command.Command;
+import command.MainMenuCommand;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,7 +13,8 @@ public class GradeCommandApp {
         return true;
     }
 
-    public static void main(String args[]){
-
+    public static void main(String args[]) {
+        Command command = new MainMenuCommand("0");
+        command.input();
     }
 }

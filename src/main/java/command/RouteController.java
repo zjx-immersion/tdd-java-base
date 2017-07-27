@@ -1,10 +1,18 @@
-import command.*;
+package command;
+
+import core.GradeReportBuilder;
+import core.Klass;
+import service.StudentGradeService;
 
 /**
  * Created by jxzhong on 2017/7/27.
  */
 public class RouteController {
 
+    private final static StudentGradeService _studentGradeService = getService();
+
+    public RouteController() {
+    }
 
     public Command generateCommand(String order) {
 
@@ -27,6 +35,13 @@ public class RouteController {
                 command = new Command("0");
                 break;
         }
+        command.setStudentGradeService(this._studentGradeService);
         return command;
+    }
+
+    private static StudentGradeService getService() {
+        Klass klass = new Klass();
+        GradeReportBuilder gradeReportBuilder = new GradeReportBuilder(klass);
+        return new StudentGradeService(klass, gradeReportBuilder);
     }
 }
