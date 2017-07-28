@@ -60,6 +60,9 @@ public class Transformer {
                         item.getTotalScore())).collect(Collectors.joining());
 
 
-        return String.format(reportTemplate, itemsText, gradereport.getTotalScore(), gradereport.getAvergeScore());
+        return String.format(reportTemplate,
+                itemsText,
+                gradereport.getTotalScore(),
+                gradereport.getAvergeScore());
     }
 }

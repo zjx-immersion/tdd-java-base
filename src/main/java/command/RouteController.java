@@ -30,7 +30,6 @@ public class RouteController {
             case "3":
                 command = new ExitCommand(order);
                 break;
-
             default:
                 command = new Command("0");
                 break;
