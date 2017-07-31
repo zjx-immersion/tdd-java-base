@@ -4,6 +4,7 @@ import service.StudentGradeService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  * Created by jxzhong on 2017/7/27.
@@ -15,6 +16,10 @@ public class Command {
     {
         bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
+
+    public static Scanner sc = new Scanner(System.in);
+    public static RouteController routeController;
+
 
     private String content;
     private String state;
@@ -29,6 +34,7 @@ public class Command {
     public Command(String state, String content) {
         this.content = content;
         this.state = state;
+        this.routeController = new RouteController();
     }
 
     protected StudentGradeService getStudentGradeService() {

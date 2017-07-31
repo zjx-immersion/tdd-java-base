@@ -18,21 +18,16 @@ public class AddStuCommand extends Command {
 
     @Override
     public void input() {
-        RouteController routeController = new RouteController();
         System.out.println(this.getContent());
-        try {
-            String input = bufferedReader.readLine();
-            Student stu = Transformer.formatStudent(input);
-            if (stu == null) {
-                this.setContent(ERROR_CONTENT);
-                input();
-            }
-            getStudentGradeService().addStudent(stu);
-            System.out.println();
-            routeController.generateCommand("0").input();
-
-        } catch (IOException e) {
-
+        String input = sc.nextLine();
+        Student stu = Transformer.formatStudent(input);
+        if (stu == null) {
+            this.setContent(ERROR_CONTENT);
+            input();
         }
+        getStudentGradeService().addStudent(stu);
+        System.out.println();
+        routeController.generateCommand("0").input();
+
     }
 }

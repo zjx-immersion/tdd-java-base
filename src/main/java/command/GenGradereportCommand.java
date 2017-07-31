@@ -21,22 +21,17 @@ public class GenGradereportCommand extends Command {
 
     @Override
     public void input() {
-        RouteController routeController = new RouteController();
         System.out.println(this.getContent());
-        try {
-            String input = bufferedReader.readLine();
-            List<Student> stus = Transformer.formatStudentNos(input);
-            if (stus.isEmpty()) {
-                this.setContent(ERROR_CONTENT);
-                input();
-            }
-            System.out.println();
-            Gradereport gradereport = getStudentGradeService().generateReport(stus);
-            System.out.println(Transformer.formatReportText(gradereport));
-            routeController.generateCommand("0").input();
-
-        } catch (IOException e) {
-
+        String input = sc.nextLine();
+        List<Student> stus = Transformer.formatStudentNos(input);
+        if (stus.isEmpty()) {
+            this.setContent(ERROR_CONTENT);
+            input();
         }
+        System.out.println();
+        Gradereport gradereport = getStudentGradeService().generateReport(stus);
+        System.out.println(Transformer.formatReportText(gradereport));
+        routeController.generateCommand("0").input();
+
     }
 }

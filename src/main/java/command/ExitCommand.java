@@ -15,11 +15,8 @@ public class ExitCommand extends Command {
     @Override
     public void input() {
         System.out.println(this.getContent());
-        try {
-            bufferedReader.close();
+        //            bufferedReader.close();
+        sc.close();
 
-        } catch (IOException e) {
-
-        }
     }
 }

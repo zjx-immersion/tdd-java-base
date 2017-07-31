@@ -22,16 +22,11 @@ public class MainMenuCommand extends Command {
     @Override
     public void input() {
 
-        RouteController routeController = new RouteController();
         System.out.println();
         System.out.println(this.getContent());
-        try {
-            String input = bufferedReader.readLine();
-            System.out.println();
-            routeController.generateCommand(input).input();
-        } catch (IOException e) {
-
-        }
+        String input = sc.nextLine();
+        System.out.println();
+        routeController.generateCommand(input).input();
     }
 
 
