@@ -7,9 +7,20 @@
  */
 
 // Apply the java-library plugin to add support for Java commandend.GradeCommandApp
-apply plugin: 'java-library'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
 apply plugin: 'idea'
 apply plugin: 'jacoco'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -21,6 +32,11 @@ jacocoTestReport {
     csv.enabled false
     html.destination "${buildDir}/jacocoHtml"
   }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: ['commandend/**'])
+        })
+    }
 }
 
 check.dependsOn jacocoTestReport
@@ -36,14 +52,8 @@ repositories {
 }
 
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api 'org.apache.commons:commons-math3:3.6.1'
 
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation 'com.google.guava:guava:20.0'
-
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
-
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 }
