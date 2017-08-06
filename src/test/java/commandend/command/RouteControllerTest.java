@@ -1,5 +1,7 @@
-import command.Command;
-import command.RouteController;
+package commandend.command;
+
+import commandend.command.Command;
+import commandend.command.RouteController;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

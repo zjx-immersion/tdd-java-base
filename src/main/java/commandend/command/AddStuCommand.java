@@ -1,9 +1,7 @@
-package command;
+package commandend.command;
 
 import core.Student;
-import transform.Transformer;
-
-import java.io.IOException;
+import commandend.transform.Transformer;
 
 /**
  * Created by jxzhong on 2017/7/27.

@@ -1,4 +1,4 @@
-package command;
+package commandend.command;
 
 import core.GradeReportBuilder;
 import core.Klass;

@@ -1,6 +1,4 @@
-package command;
-
-import java.io.IOException;
+package commandend.command;
 
 /**
  * Created by jxzhong on 2017/7/27.

@@ -1,4 +1,4 @@
-package command;
+package commandend.command;
 
 import org.junit.After;
 import org.junit.Before;
@@ -35,13 +35,16 @@ public class MainMenuCommandTest {
     }
 
     @Test
-    public void inputTest() throws Exception {
+    public void should_get_menu_and_exit_text_when_execute_menu_command_and_input_3() throws Exception {
+        //Given
         MainMenuCommand command = new MainMenuCommand("0");
         InputStream stdin = System.in;
         System.setIn(new ByteArrayInputStream("3".getBytes()));
         Scanner scanner = new Scanner(System.in);
+        //When
         command.sc = scanner;
         command.input();
+        //Then
         assertEquals("\n" +
                 "***********\n" +
                 "1. 添加学生\n" +
@@ -58,17 +61,22 @@ public class MainMenuCommandTest {
 
     @Test
     public void inputTest1() throws Exception {
+        //Given
         RouteController controller = mock(RouteController.class);
         AddStuCommand addCommand = mock(AddStuCommand.class);
+
         when(controller.generateCommand("1")).thenReturn(addCommand);
         doNothing().when(addCommand).input();
+
         MainMenuCommand command = new MainMenuCommand("0");
-        InputStream stdin = System.in;
+
         System.setIn(new ByteArrayInputStream("1".getBytes()));
         Scanner scanner = new Scanner(System.in);
+        //When
         command.routeController = controller;
         command.sc = scanner;
         command.input();
+        //Then
         verify(controller, times(1)).generateCommand("1");
     }
 }
