@@ -6,7 +6,7 @@
  * user guide available at https://docs.gradle.org/3.4.1/userguide/java_library_plugin.html
  */
 
-// Apply the java-library plugin to add support for Java commandend.GradeCommandApp
+// Apply the java-library plugin to add support for Java com.tw.commandend.GradeCommandApp
 
 buildscript {
     repositories {
@@ -34,7 +34,7 @@ jacocoTestReport {
   }
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['commandend/**'])
+            fileTree(dir: it, exclude: ['com.tw.commandend/**'])
         })
     }
 }
