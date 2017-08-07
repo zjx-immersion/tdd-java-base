@@ -1,5 +1,7 @@
 package com.tw.core;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Created by jxzhong on 2017/7/26.
  */
@@ -30,6 +32,7 @@ public class Student {
     }
 
     private String name;
+    @NotEmpty
     private String number;
     private int mathsScore;
     private int chineseScore;
