@@ -49,4 +49,17 @@ public class StudentGradeServiceTest {
         verify(this.gradeReportBuilder,times(1)).buildIndicatedStuReport(stuList);
 
     }
+
+    @Test
+    public void shoud_generate_report_with_all_students() throws Exception {
+        //Given
+        Student stu = new Student("Tom", "1", 90, 88, 98, 100);
+        StudentGradeService studentGradeService = new StudentGradeService(this.klass, this.gradeReportBuilder);
+        //When
+        List<Student> stuList = asList(stu);
+        Gradereport report = studentGradeService.generateReportForAllStudents();
+        //Then
+        verify(this.gradeReportBuilder,times(1)).buildIndicatedStuReport(klass.getAllStudent());
+
+    }
 }

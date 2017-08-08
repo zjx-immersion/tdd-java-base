@@ -32,4 +32,16 @@ public class StudentGradeService {
     public Gradereport generateReport(List<Student> stuList) {
         return this.gradeReportBuilder.buildIndicatedStuReport(stuList);
     }
+
+    public Gradereport generateReportForAllStudents() {
+        return this.gradeReportBuilder.buildIndicatedStuReport(this.klass.getAllStudent());
+    }
+
+    public List<Student> findAllStudents() {
+        return this.klass.getAllStudent();
+    }
+
+    public List<Student> findByNumberOrName(String keyWords) {
+        return this.klass.findByNumberOrNumber(keyWords);
+    }
 }

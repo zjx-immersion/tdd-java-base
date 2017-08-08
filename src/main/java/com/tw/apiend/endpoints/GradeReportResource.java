@@ -27,11 +27,18 @@ public class GradeReportResource {
 
     @PostMapping(value = "/gradereports",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity get(@RequestBody final List<Student> stus) {
+    public ResponseEntity generate(@RequestBody final List<Student> stus) {
         if (null == stus || 0 == stus.size()) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         Gradereport gradereport = studentGradeService.generateReport(stus);
+        return new ResponseEntity(gradereport, HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/defaultgradereports",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity generate() {
+        Gradereport gradereport = studentGradeService.generateReportForAllStudents();
         return new ResponseEntity(gradereport, HttpStatus.CREATED);
     }
 }

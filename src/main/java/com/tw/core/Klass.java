@@ -27,4 +27,12 @@ public class Klass {
     public List<Student> getAllStudent() {
         return this.students.stream().collect(Collectors.toList());
     }
+
+    public List<Student> findByNumberOrNumber(String keyWords) {
+
+        return this.students.stream()
+                .filter(s-> s.getNumber().toLowerCase().equals(keyWords.toLowerCase())
+                        || s.getName().toLowerCase().equals(keyWords.toLowerCase()))
+                .collect(Collectors.toList());
+    }
 }

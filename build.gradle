@@ -53,7 +53,8 @@ repositories {
 
 dependencies {
 
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+    compile "org.springframework.boot:spring-boot-starter-web",
+            "org.springframework.boot:spring-boot-starter-hateoas"
+    testCompile "org.springframework.boot:spring-boot-starter-test",
+            group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 }

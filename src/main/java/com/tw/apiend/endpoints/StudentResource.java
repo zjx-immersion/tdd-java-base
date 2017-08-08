@@ -32,7 +32,21 @@ public class StudentResource {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         studentGradeService.addStudent(stu);
-        return new ResponseEntity(stu, HttpStatus.CREATED);
+        return  ResponseEntity.status(HttpStatus.CREATED).body(stu);
+    }
+
+    @GetMapping(value = "/students/{keyWords}"
+            , produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity get(@PathVariable String keyWords) {
+        return  ResponseEntity.status(HttpStatus.CREATED).body(studentGradeService.findByNumberOrName(keyWords));
+    }
+
+    @GetMapping(value = "/students"
+            , produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity getall() {
+        return  ResponseEntity.status(HttpStatus.CREATED).body(studentGradeService.findAllStudents());
     }
 
 }
