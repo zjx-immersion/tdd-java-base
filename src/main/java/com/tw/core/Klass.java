@@ -31,8 +31,8 @@ public class Klass {
     public List<Student> findByNumberOrNumber(String keyWords) {
 
         return this.students.stream()
-                .filter(s-> s.getNumber().toLowerCase().equals(keyWords.toLowerCase())
-                        || s.getName().toLowerCase().equals(keyWords.toLowerCase()))
+                .filter(s-> s.getNumber().toLowerCase().contains(keyWords.toLowerCase())
+                        || s.getName().toLowerCase().contains(keyWords.toLowerCase()))
                 .collect(Collectors.toList());
     }
 }
