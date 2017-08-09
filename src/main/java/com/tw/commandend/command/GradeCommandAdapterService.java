@@ -31,6 +31,7 @@ public class GradeCommandAdapterService {
     }
 
     public void addStudent(Student stu) {
+        //todo should add the featire fpr add grade separated with student
         this.studentService.addStudent(stu);
     }
 

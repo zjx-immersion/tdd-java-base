@@ -1,5 +1,6 @@
 package com.tw.core;
 
+import com.tw.core.model.Grade;
 import com.tw.core.model.Gradereport;
 import com.tw.core.model.Student;
 import com.tw.core.model.StudentGradeItem;
@@ -107,5 +108,90 @@ public class GradeReportBuilderTest {
         //Then
         assertEquals(report.getStudentGradeItems().size(), 1);
         assertEquals(report.getStudentGradeItems().get(0).getNumber(), "1");
+    }
+
+    @Test
+    public void should_generate_report_when_input_one_stu_and_conresponsed_grade() throws Exception {
+        //Given
+        GradeReportBuilder reportBuilder = new GradeReportBuilder();
+        List<Student> students = asList(
+                new Student("Tom", "1")
+        );
+        List<Grade> grades = asList(
+                new Grade("1", 90, 88, 98, 100)
+        );
+
+        List<StudentGradeItem> gradeItems = asList(
+                new StudentGradeItem("Tom", "1", 90, 88, 98, 100));
+        StudentGradeItem studentGradeItemOrigin = gradeItems.get(0);
+        //When
+        Gradereport report = reportBuilder.buildStudentGradeReport(students, grades);
+
+
+        //Then
+        assertEquals(report.getStudentGradeItems().size(), gradeItems.size());
+        StudentGradeItem studentGradeItem1 = report.getStudentGradeItems().get(0);
+        assertEquals(studentGradeItem1.getName(), studentGradeItemOrigin.getName());
+        assertEquals(studentGradeItem1.getNumber(), studentGradeItemOrigin.getNumber());
+        assertEquals(studentGradeItem1.getMathsScore(), studentGradeItemOrigin.getMathsScore());
+        assertEquals(studentGradeItem1.getChineseScore(), studentGradeItemOrigin.getChineseScore());
+        assertEquals(studentGradeItem1.getEnglishScore(), studentGradeItemOrigin.getEnglishScore());
+        assertEquals(studentGradeItem1.getProgramScore(), studentGradeItemOrigin.getProgramScore());
+
+    }
+
+    @Test
+    public void should_generate_report_when_input_indicated_stus_and_conresponsed_grades() throws Exception {
+        //Given
+        GradeReportBuilder reportBuilder = new GradeReportBuilder();
+        List<Student> students = asList(
+                new Student("Tom", "1"),
+                new Student("Jim", "2")
+        );
+        List<Grade> grades = asList(
+                new Grade("1", 90, 88, 98, 100),
+                new Grade("2", 95, 93, 92, 80)
+        );
+
+        List<StudentGradeItem> gradeItems = asList(
+                new StudentGradeItem("Tom", "1", 90, 88, 98, 100),
+                new StudentGradeItem("Jim", "2", 95, 93, 92, 80));
+        //When
+        Gradereport report = reportBuilder.buildStudentGradeReport(students, grades);
+        StudentGradeItem studentGradeItem1 = report.getStudentGradeItems().get(0);
+        StudentGradeItem studentGradeItem2 = report.getStudentGradeItems().get(1);
+
+        //Then
+        assertEquals(report.getStudentGradeItems().size(), gradeItems.size());
+        assertEquals(studentGradeItem1.getName(), gradeItems.get(0).getName());
+        assertEquals(studentGradeItem1.getMathsScore(), gradeItems.get(0).getMathsScore());
+        assertEquals(studentGradeItem2.getName(), gradeItems.get(1).getName());
+        assertEquals(studentGradeItem2.getMathsScore(), gradeItems.get(1).getMathsScore());
+    }
+
+
+    @Test
+    public void shoule_get_total_and_average_score_when_report_inclues_more_than_one_studentinfos() throws Exception {
+        //Given
+        GradeReportBuilder reportBuilder = new GradeReportBuilder();
+        List<Student> students = asList(
+                new Student("Tom", "1"),
+                new Student("Jim", "2")
+        );
+        List<Grade> grades = asList(
+                new Grade("1", 90, 88, 98, 100),
+                new Grade("2", 95, 93, 92, 80)
+        );
+
+        //When
+        Gradereport report = reportBuilder.buildStudentGradeReport(students, grades);
+
+        //Then
+        assertThat(report.getStudentGradeItems().get(0).getTotalScore(), is(376));
+        assertThat(report.getStudentGradeItems().get(0).getAvergeScore(), is(94));
+        assertThat(report.getStudentGradeItems().get(1).getTotalScore(), is(360));
+        assertThat(report.getStudentGradeItems().get(1).getAvergeScore(), is(90));
+        assertThat(report.getTotalScore(), is(736));
+        assertThat(report.getAvergeScore(), is(368));
     }
 }

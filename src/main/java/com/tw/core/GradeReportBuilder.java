@@ -1,5 +1,6 @@
 package com.tw.core;
 
+import com.tw.core.model.Grade;
 import com.tw.core.model.Gradereport;
 import com.tw.core.model.Student;
 import com.tw.core.model.StudentGradeItem;
@@ -15,6 +16,9 @@ import java.util.stream.Collectors;
 @Component
 public class GradeReportBuilder {
     private StudentRepository studentRepository;
+
+    public GradeReportBuilder() {
+    }
 
     public GradeReportBuilder(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -33,4 +37,22 @@ public class GradeReportBuilder {
                         s.getProgramScore())).collect(Collectors.toList()));
         return gradereport;
     }
+
+    public Gradereport buildStudentGradeReport(List<Student> students, List<Grade> grades) {
+        Gradereport gradereport = new Gradereport();
+        gradereport.setStudentGradeItems(grades.stream()
+                .filter(grade -> students.stream().anyMatch(indicatedStu -> indicatedStu.getNumber().equals(grade.getStuNumber())))
+                .map(grade -> {
+                    Student stu = students.stream().filter(s -> grade.getStuNumber().equals(s.getNumber())).findFirst().get();
+                    return new StudentGradeItem(
+                            stu.getName(),
+                            stu.getNumber(),
+                            grade.getMathsScore(),
+                            grade.getChineseScore(),
+                            grade.getEnglishScore(),
+                            grade.getProgramScore());
+                }).collect(Collectors.toList()));
+        return gradereport;
+    }
+
 }

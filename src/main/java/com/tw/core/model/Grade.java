@@ -11,6 +11,14 @@ public class Grade {
     private Integer englishScore;
     private String stuNumber;
 
+    public Grade(String stuNumber, Integer mathsScore, Integer chineseScore, Integer englishScore, Integer programScore) {
+        this.stuNumber = stuNumber;
+        this.mathsScore = mathsScore;
+        this.chineseScore = chineseScore;
+        this.englishScore = englishScore;
+        this.programScore = programScore;
+    }
+
     public Integer getMathsScore() {
         return mathsScore;
     }

@@ -16,6 +16,11 @@ public class Student {
                 student.getProgramScore());
     }
 
+    public Student(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
