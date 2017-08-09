@@ -14,7 +14,7 @@ import javax.validation.Valid;
  * Created by jxzhong on 2017/8/6.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/students")
 public class StudentResource {
 
     private final StudentGradeService studentGradeService;
@@ -24,7 +24,7 @@ public class StudentResource {
         this.studentGradeService = studentGradeService;
     }
 
-    @PostMapping(value = "/students"
+    @PostMapping(value = ""
             , produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity create(@Valid @RequestBody Student stu) {
@@ -35,14 +35,14 @@ public class StudentResource {
         return  ResponseEntity.status(HttpStatus.CREATED).body(stu);
     }
 
-    @GetMapping(value = "/students/{keyWords}"
+    @GetMapping(value = "/{keyWords}"
             , produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity get(@PathVariable String keyWords) {
         return  ResponseEntity.status(HttpStatus.CREATED).body(studentGradeService.findByNumberOrName(keyWords));
     }
 
-    @GetMapping(value = "/students"
+    @GetMapping(value = ""
             , produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity getall() {
