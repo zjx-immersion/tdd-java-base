@@ -1,5 +1,9 @@
 package com.tw.core;
 
+import com.tw.core.model.Gradereport;
+import com.tw.core.model.Student;
+import com.tw.core.model.StudentGradeItem;
+import com.tw.core.respository.StudentRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,15 +14,15 @@ import java.util.stream.Collectors;
  */
 @Component
 public class GradeReportBuilder {
-    private Klass klass;
+    private StudentRepository studentRepository;
 
-    public GradeReportBuilder(Klass klass) {
-        this.klass = klass;
+    public GradeReportBuilder(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     public Gradereport buildIndicatedStuReport(List<Student> stuList) {
         Gradereport gradereport = new Gradereport();
-        gradereport.setStudentGradeItems(this.klass.getAllStudent().stream()
+        gradereport.setStudentGradeItems(this.studentRepository.getAllStudent().stream()
                 .filter(s -> stuList.stream().anyMatch(indicatedStu -> indicatedStu.getNumber().equals(s.getNumber())))
                 .map(s -> new StudentGradeItem(
                         s.getName(),

@@ -1,6 +1,6 @@
 package com.tw.apiend.endpoints;
 
-import com.tw.core.Grade;
+import com.tw.core.model.Grade;
 import com.tw.service.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +42,8 @@ public class ScoreResource {
 
         Grade grade = gradeService.getStudentGrade(number);
         if (grade == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\": \"Student's grade is not exist!\"}");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("{\"error\": \"Student's grade is not exist!\"}");
         }else {
             return ResponseEntity.status(HttpStatus.OK).body(grade);
         }

@@ -1,7 +1,7 @@
 package com.tw.commandend.transform;
 
-import com.tw.core.Gradereport;
-import com.tw.core.Student;
+import com.tw.core.model.Gradereport;
+import com.tw.core.model.Student;
 
 import java.util.Arrays;
 import java.util.List;

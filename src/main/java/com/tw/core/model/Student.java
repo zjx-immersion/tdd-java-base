@@ -1,4 +1,4 @@
-package com.tw.core;
+package com.tw.core.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

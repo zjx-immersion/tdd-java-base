@@ -1,10 +1,10 @@
-package com.tw.core;
+package com.tw.core.respository;
 
+import com.tw.core.model.Student;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
@@ -14,10 +14,10 @@ import static java.util.Arrays.asList;
  */
 
 @Component
-public class Klass {
+public class StudentRepository {
     private List<Student> students;
 
-    public Klass() {
+    public StudentRepository() {
         students = new ArrayList<>();
     }
 

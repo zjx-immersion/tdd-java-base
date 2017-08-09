@@ -1,4 +1,4 @@
-package com.tw.core;
+package com.tw.core.model;
 
 /**
  * Created by jxzhong on 2017/8/9.

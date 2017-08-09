@@ -1,6 +1,6 @@
 package com.tw.core.respository;
 
-import com.tw.core.Grade;
+import com.tw.core.model.Grade;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

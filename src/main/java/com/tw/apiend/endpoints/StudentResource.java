@@ -1,12 +1,12 @@
 package com.tw.apiend.endpoints;
 
-import com.tw.core.Student;
+import com.tw.core.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.tw.service.StudentGradeService;
+import com.tw.service.StudentService;
 
 import javax.validation.Valid;
 
@@ -17,10 +17,10 @@ import javax.validation.Valid;
 @RequestMapping("/api/students")
 public class StudentResource {
 
-    private final StudentGradeService studentGradeService;
+    private final StudentService studentGradeService;
 
     @Autowired
-    public StudentResource(StudentGradeService studentGradeService) {
+    public StudentResource(StudentService studentGradeService) {
         this.studentGradeService = studentGradeService;
     }
 

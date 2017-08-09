@@ -1,7 +1,7 @@
 package com.tw.commandend.command;
 
-import com.tw.core.Gradereport;
-import com.tw.core.Student;
+import com.tw.core.model.Gradereport;
+import com.tw.core.model.Student;
 import com.tw.commandend.transform.Transformer;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class GenGradereportCommand extends Command {
             input();
         }
         System.out.println();
-        Gradereport gradereport = getStudentGradeService().generateReport(stus);
+        Gradereport gradereport = getGradeCommandAdapterService().generateReport(stus);
         System.out.println(Transformer.formatReportText(gradereport));
         routeController.generateCommand("0").input();
 

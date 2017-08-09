@@ -1,4 +1,4 @@
-package com.tw.core;
+package com.tw.core.model;
 
 import java.util.List;
 

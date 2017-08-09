@@ -1,9 +1,8 @@
 package com.tw.service;
 
 import com.tw.core.GradeReportBuilder;
-import com.tw.core.Gradereport;
-import com.tw.core.Klass;
-import com.tw.core.Student;
+import com.tw.core.respository.StudentRepository;
+import com.tw.core.model.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -11,7 +10,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -23,7 +21,7 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 public class StudentGradeServiceTest {
 
     @Mock
-    private Klass klass;
+    private StudentRepository studentRepository;
     @Mock
     private GradeReportBuilder gradeReportBuilder;
 
@@ -31,48 +29,23 @@ public class StudentGradeServiceTest {
     public void shoud_add_student() throws Exception {
         //Given
         Student stu = new Student("Tom", "1", 90, 88, 98, 100);
-        StudentGradeService studentGradeService = new StudentGradeService(this.klass, this.gradeReportBuilder);
+        StudentService studentGradeService = new StudentService(this.studentRepository, this.gradeReportBuilder);
         //When
         studentGradeService.addStudent(stu);
         //Then
-        verify(this.klass, times(1)).addStudents(stu);
+        verify(this.studentRepository, times(1)).addStudents(stu);
     }
 
-    @Test
-    public void shoud_generate_report() throws Exception {
-        //Given
-        Student stu = new Student("Tom", "1", 90, 88, 98, 100);
-        StudentGradeService studentGradeService = new StudentGradeService(this.klass, this.gradeReportBuilder);
-        //When
-        List<Student> stuList = asList(stu);
-        Gradereport report = studentGradeService.generateReport(stuList);
-        //Then
-        verify(this.gradeReportBuilder,times(1)).buildIndicatedStuReport(stuList);
-
-    }
-
-    @Test
-    public void shoud_generate_report_with_all_students() throws Exception {
-        //Given
-        Student stu = new Student("Tom", "1", 90, 88, 98, 100);
-        StudentGradeService studentGradeService = new StudentGradeService(this.klass, this.gradeReportBuilder);
-        //When
-        List<Student> stuList = asList(stu);
-        Gradereport report = studentGradeService.generateReportForAllStudents();
-        //Then
-        verify(this.gradeReportBuilder,times(1)).buildIndicatedStuReport(klass.getAllStudent());
-
-    }
 
     @Test
     public void shoud_search_student_call() throws Exception {
         //Given
         String keyWords= anyString();
-        StudentGradeService studentGradeService = new StudentGradeService(this.klass, this.gradeReportBuilder);
+        StudentService studentGradeService = new StudentService(this.studentRepository, this.gradeReportBuilder);
         //When
         List<Student> students = studentGradeService.findByNumberOrName(keyWords);
         //Then
-        verify(this.klass,times(1)).findByNumberOrNumber(keyWords);
+        verify(this.studentRepository,times(1)).findByNumberOrNumber(keyWords);
 
     }
 }

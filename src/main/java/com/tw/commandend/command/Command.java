@@ -1,6 +1,6 @@
 package com.tw.commandend.command;
 
-import com.tw.service.StudentGradeService;
+import com.tw.service.ReportService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -24,7 +24,7 @@ public class Command {
     private String content;
     private String state;
 
-    private StudentGradeService studentGradeService;
+    private GradeCommandAdapterService gradeCommandAdapterService;
 
 
     public Command(String order) {
@@ -37,12 +37,12 @@ public class Command {
         this.routeController = new RouteController();
     }
 
-    protected StudentGradeService getStudentGradeService() {
-        return studentGradeService;
+    protected GradeCommandAdapterService getGradeCommandAdapterService() {
+        return gradeCommandAdapterService;
     }
 
-    public void setStudentGradeService(StudentGradeService studentGradeService) {
-        this.studentGradeService = studentGradeService;
+    public void setGradeCommandAdapterService(GradeCommandAdapterService gradeCommandAdapterService) {
+        this.gradeCommandAdapterService = gradeCommandAdapterService;
     }
 
     public String getState() {

@@ -1,8 +1,8 @@
 package com.tw.commandend.transform;
 
-import com.tw.core.Gradereport;
-import com.tw.core.Student;
-import com.tw.core.StudentGradeItem;
+import com.tw.core.model.Gradereport;
+import com.tw.core.model.Student;
+import com.tw.core.model.StudentGradeItem;
 import org.junit.Test;
 
 import java.util.List;

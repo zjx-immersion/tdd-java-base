@@ -1,5 +1,9 @@
 package com.tw.core;
 
+import com.tw.core.model.Gradereport;
+import com.tw.core.model.Student;
+import com.tw.core.model.StudentGradeItem;
+import com.tw.core.respository.StudentRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -21,16 +25,16 @@ import static org.mockito.Mockito.when;
 public class GradeReportBuilderTest {
 
     @Mock
-    private Klass klass;
+    private StudentRepository studentRepository;
 
     @Test
     public void should_get_report_includes_students() throws Exception {
         //Given
-        GradeReportBuilder reportBuilder = new GradeReportBuilder(klass);
+        GradeReportBuilder reportBuilder = new GradeReportBuilder(studentRepository);
         List<Student> students = asList(new Student("Tom", "1", 90, 88, 98, 100));
         List<StudentGradeItem> gradeItems = asList(new StudentGradeItem("Tom", "1", 90, 88, 98, 100));
         StudentGradeItem studentGradeItemOrigin = gradeItems.get(0);
-        when(klass.getAllStudent()).thenReturn(students);
+        when(studentRepository.getAllStudent()).thenReturn(students);
 
         //When
         Gradereport report = reportBuilder.buildIndicatedStuReport(students);
@@ -48,12 +52,12 @@ public class GradeReportBuilderTest {
 
     @Test
     public void shoule_get_tital_and_average_score_with_any_stu_when_class_inclues_more_than_one_studentinfos() throws Exception {
-        GradeReportBuilder reportBuilder = new GradeReportBuilder(klass);
+        GradeReportBuilder reportBuilder = new GradeReportBuilder(studentRepository);
         List<Student> students = asList(
                 new Student("Tom", "1", 90, 88, 98, 100),
                 new Student("Jim", "2", 95, 93, 92, 80)
         );
-        when(klass.getAllStudent()).thenReturn(students);
+        when(studentRepository.getAllStudent()).thenReturn(students);
 
         //When
         Gradereport report = reportBuilder.buildIndicatedStuReport(students);
@@ -67,12 +71,12 @@ public class GradeReportBuilderTest {
 
     @Test
     public void shoule_get_class_total_and_average_scorn_when_class_inclues_more_than_one_studentinfos() throws Exception {
-        GradeReportBuilder reportBuilder = new GradeReportBuilder(klass);
+        GradeReportBuilder reportBuilder = new GradeReportBuilder(studentRepository);
         List<Student> students = asList(
                 new Student("Tom", "1", 90, 88, 98, 100),
                 new Student("Jim", "2", 95, 93, 92, 80)
         );
-        when(klass.getAllStudent()).thenReturn(students);
+        when(studentRepository.getAllStudent()).thenReturn(students);
 
         //When
         Gradereport report = reportBuilder.buildIndicatedStuReport(students);
@@ -85,12 +89,12 @@ public class GradeReportBuilderTest {
 
     @Test
     public void shoule_get_indicated_stus_report_when_include_un_exist_stu_input() throws Exception {
-        GradeReportBuilder reportBuilder = new GradeReportBuilder(klass);
+        GradeReportBuilder reportBuilder = new GradeReportBuilder(studentRepository);
         List<Student> students = asList(
                 new Student("Tom", "1", 90, 88, 98, 100),
                 new Student("Jim", "2", 95, 93, 92, 80)
         );
-        when(klass.getAllStudent()).thenReturn(students);
+        when(studentRepository.getAllStudent()).thenReturn(students);
 
         List<Student> indicatedStudents = asList(
                 new Student("Tom", "1", 90, 88, 98, 100),

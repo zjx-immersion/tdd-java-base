@@ -1,7 +1,7 @@
 package com.tw.service;
 
-import com.tw.core.Grade;
-import com.tw.core.Klass;
+import com.tw.core.model.Grade;
+import com.tw.core.respository.StudentRepository;
 import com.tw.core.respository.GradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,19 +12,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class GradeService {
 
-    private final Klass klass;
+    private final StudentRepository studentRepository;
     private final GradeRepository gradeRepository;
 
     @Autowired
-    public GradeService(Klass klass, GradeRepository gradeRepository) {
-        this.klass = klass;
+    public GradeService(StudentRepository studentRepository, GradeRepository gradeRepository) {
+        this.studentRepository = studentRepository;
         this.gradeRepository = gradeRepository;
     }
 
     public Boolean addOrUpdateGradeOfStudent(String stuNumber, Grade grade) {
 
         try {
-            if (!this.klass.isExist(stuNumber)) {
+            if (!this.studentRepository.isExist(stuNumber)) {
                 throw new NullPointerException("tudent is not exist!");
             }
             grade.setStuNumber(stuNumber);
@@ -39,7 +39,7 @@ public class GradeService {
     }
 
     public Grade getStudentGrade(String stuNumber) {
-        if (!this.klass.isExist(stuNumber)) {
+        if (!this.studentRepository.isExist(stuNumber)) {
             throw new NullPointerException("Student is not exist!");
         }
         Grade grade = this.gradeRepository.findGradeByStudentNumber(stuNumber);

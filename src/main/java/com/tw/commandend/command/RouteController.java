@@ -1,15 +1,18 @@
 package com.tw.commandend.command;
 
 import com.tw.core.GradeReportBuilder;
-import com.tw.core.Klass;
-import com.tw.service.StudentGradeService;
+import com.tw.core.respository.GradeRepository;
+import com.tw.core.respository.StudentRepository;
+import com.tw.service.GradeService;
+import com.tw.service.ReportService;
+import com.tw.service.StudentService;
 
 /**
  * Created by jxzhong on 2017/7/27.
  */
 public class RouteController {
 
-    private final static StudentGradeService _studentGradeService = getService();
+    private final static GradeCommandAdapterService GRADE_COMMAND_ADAPTER_SERVICE = getService();
 
     public RouteController() {
     }
@@ -34,13 +37,18 @@ public class RouteController {
                 command = new Command("0");
                 break;
         }
-        command.setStudentGradeService(this._studentGradeService);
+        command.setGradeCommandAdapterService(this.GRADE_COMMAND_ADAPTER_SERVICE);
         return command;
     }
 
-    private static StudentGradeService getService() {
-        Klass klass = new Klass();
-        GradeReportBuilder gradeReportBuilder = new GradeReportBuilder(klass);
-        return new StudentGradeService(klass, gradeReportBuilder);
+    private static GradeCommandAdapterService getService() {
+
+        StudentRepository studentRepository = new StudentRepository();
+        GradeRepository gradeRepository = new GradeRepository();
+        GradeReportBuilder gradeReportBuilder = new GradeReportBuilder(studentRepository);
+        StudentService studentService = new StudentService(studentRepository, gradeReportBuilder);
+        GradeService gradeService = new GradeService(studentRepository, gradeRepository);
+        ReportService reportService = new ReportService(studentService, gradeReportBuilder, gradeService);
+        return new GradeCommandAdapterService(studentService, gradeService, reportService);
     }
 }

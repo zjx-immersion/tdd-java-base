@@ -1,6 +1,6 @@
 package com.tw.commandend.command;
 
-import com.tw.core.Student;
+import com.tw.core.model.Student;
 import com.tw.commandend.transform.Transformer;
 
 /**
@@ -23,7 +23,7 @@ public class AddStuCommand extends Command {
             this.setContent(ERROR_CONTENT);
             input();
         }
-        getStudentGradeService().addStudent(stu);
+        getGradeCommandAdapterService().addStudent(stu);
         System.out.println();
         routeController.generateCommand("0").input();
 

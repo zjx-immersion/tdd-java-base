@@ -1,5 +1,7 @@
 package com.tw.core;
 
+import com.tw.core.model.Student;
+import com.tw.core.respository.StudentRepository;
 import org.junit.Test;
 
 import java.util.List;
@@ -11,17 +13,17 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by jxzhong on 2017/7/26.
  */
-public class KlassTest {
+public class StudentRepositoryTest {
     @Test
     public void should_get_students_after_insert_two_students() throws Exception {
         //Given
         Student stu1 = new Student("Tom", "1", 90, 88, 98, 100);
         Student stu2 = new Student("Jim", "2", 95, 98, 92, 80);
-        Klass klass = new Klass();
+        StudentRepository studentRepository = new StudentRepository();
 
         //When
-        klass.addStudents(stu1, stu2);
-        List<Student> students = klass.getAllStudent();
+        studentRepository.addStudents(stu1, stu2);
+        List<Student> students = studentRepository.getAllStudent();
         stu1.setNumber("5");
 
         //Then
@@ -34,11 +36,11 @@ public class KlassTest {
         //Given
         Student stu1 = new Student("Tom", "1", 90, 88, 98, 100);
         Student stu2 = new Student("Jim", "2", 95, 98, 92, 80);
-        Klass klass = new Klass();
+        StudentRepository studentRepository = new StudentRepository();
 
         //When
-        klass.addStudents(stu1, stu2);
-        List<Student> students = klass.findByNumberOrNumber("om");
+        studentRepository.addStudents(stu1, stu2);
+        List<Student> students = studentRepository.findByNumberOrNumber("om");
 
         //Then
         assertEquals(students.size(), 1);
@@ -50,11 +52,11 @@ public class KlassTest {
         //Given
         Student stu1 = new Student("Tom", "001", 90, 88, 98, 100);
         Student stu2 = new Student("Jim", "2", 95, 98, 92, 80);
-        Klass klass = new Klass();
+        StudentRepository studentRepository = new StudentRepository();
 
         //When
-        klass.addStudents(stu1, stu2);
-        List<Student> students = klass.findByNumberOrNumber("1");
+        studentRepository.addStudents(stu1, stu2);
+        List<Student> students = studentRepository.findByNumberOrNumber("1");
         stu1.setNumber("007");
 
         //Then
