@@ -22,9 +22,11 @@ public class KlassTest {
         //When
         klass.addStudents(stu1, stu2);
         List<Student> students = klass.getAllStudent();
+        stu1.setNumber("5");
 
         //Then
         assertEquals(students.size(), 2);
+        assertEquals(students.get(0).getNumber(), "1");
     }
 
     @Test
@@ -53,6 +55,7 @@ public class KlassTest {
         //When
         klass.addStudents(stu1, stu2);
         List<Student> students = klass.findByNumberOrNumber("1");
+        stu1.setNumber("007");
 
         //Then
         assertEquals(students.size(), 1);

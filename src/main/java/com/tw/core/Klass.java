@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
@@ -25,14 +26,33 @@ public class Klass {
     }
 
     public List<Student> getAllStudent() {
-        return this.students.stream().collect(Collectors.toList());
+        return this.students.stream().map(Student::new).collect(Collectors.toList());
     }
 
     public List<Student> findByNumberOrNumber(String keyWords) {
 
         return this.students.stream()
-                .filter(s-> s.getNumber().toLowerCase().contains(keyWords.toLowerCase())
+                .filter(s -> s.getNumber().toLowerCase().contains(keyWords.toLowerCase())
                         || s.getName().toLowerCase().contains(keyWords.toLowerCase()))
-                .collect(Collectors.toList());
+                .map(Student::new).collect(Collectors.toList());
+    }
+
+    public Student findStudentByNumber(String stuNumber) {
+        return this.students.stream()
+                .filter(stu -> stu.getNumber().equals(stuNumber))
+                .map(Student::new)
+                .findFirst().orElse(null);
+    }
+
+    public Boolean updateStudent(Student stu) {
+        try {
+            this.students.remove(this.students.stream()
+                    .filter(s -> s.getNumber() == stu.getNumber())
+                    .findFirst().get());
+            this.students.add(stu);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

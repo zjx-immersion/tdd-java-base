@@ -7,6 +7,15 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class Student {
 
+    public Student(Student student) {
+        this(student.getName(),
+                student.getNumber(),
+                student.getMathsScore(),
+                student.getChineseScore(),
+                student.getEnglishScore(),
+                student.getProgramScore());
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -80,4 +89,5 @@ public class Student {
     public int getProgramScore() {
         return programScore;
     }
+
 }
