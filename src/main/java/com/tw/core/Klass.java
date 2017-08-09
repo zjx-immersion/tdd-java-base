@@ -55,4 +55,8 @@ public class Klass {
             return false;
         }
     }
+
+    public boolean isExist(String stuNumber) {
+        return findStudentByNumber(stuNumber) != null;
+    }
 }

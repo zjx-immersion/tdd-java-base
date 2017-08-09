@@ -9,6 +9,7 @@ public class Grade {
     private Integer programScore;
     private Integer chineseScore;
     private Integer englishScore;
+    private String stuNumber;
 
     public Integer getMathsScore() {
         return mathsScore;
@@ -40,5 +41,13 @@ public class Grade {
 
     public void setEnglishScore(Integer englishScore) {
         this.englishScore = englishScore;
+    }
+
+    public void setStuNumber(String stuNumber) {
+        this.stuNumber = stuNumber;
+    }
+
+    public String getStuNumber() {
+        return stuNumber;
     }
 }

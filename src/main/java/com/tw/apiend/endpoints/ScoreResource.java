@@ -1,7 +1,7 @@
 package com.tw.apiend.endpoints;
 
 import com.tw.core.Grade;
-import com.tw.service.StudentGradeService;
+import com.tw.service.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,11 +17,11 @@ import javax.validation.Valid;
 @RequestMapping("/api/students/{number}/grades")
 public class ScoreResource {
 
-    private final StudentGradeService studentGradeService;
+    private final GradeService gradeService;
 
     @Autowired
-    public ScoreResource(StudentGradeService studentGradeService) {
-        this.studentGradeService = studentGradeService;
+    public ScoreResource(GradeService gradeService) {
+        this.gradeService = gradeService;
     }
 
     @PostMapping(value = ""
@@ -31,7 +31,7 @@ public class ScoreResource {
         if (isGradleValidated(grade)) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        studentGradeService.addGradeToStudent(number, grade);
+        gradeService.addOrUpdateGradeOfStudent(number, grade);
         return ResponseEntity.status(HttpStatus.CREATED).body(grade);
     }
 
@@ -40,8 +40,12 @@ public class ScoreResource {
     @ResponseBody
     public ResponseEntity get(@PathVariable String number) {
 
-        Grade grade = studentGradeService.getStudentGrade(number);
-        return ResponseEntity.status(HttpStatus.OK).body(grade);
+        Grade grade = gradeService.getStudentGrade(number);
+        if (grade == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\": \"Student's grade is not exist!\"}");
+        }else {
+            return ResponseEntity.status(HttpStatus.OK).body(grade);
+        }
     }
 
     private boolean isGradleValidated(@Valid @RequestBody Grade grade) {
