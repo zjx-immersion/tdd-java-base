@@ -12,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
@@ -60,6 +61,18 @@ public class StudentGradeServiceTest {
         Gradereport report = studentGradeService.generateReportForAllStudents();
         //Then
         verify(this.gradeReportBuilder,times(1)).buildIndicatedStuReport(klass.getAllStudent());
+
+    }
+
+    @Test
+    public void shoud_search_student_call() throws Exception {
+        //Given
+        String keyWords= anyString();
+        StudentGradeService studentGradeService = new StudentGradeService(this.klass, this.gradeReportBuilder);
+        //When
+        List<Student> students = studentGradeService.findByNumberOrName(keyWords);
+        //Then
+        verify(this.klass,times(1)).findByNumberOrNumber(keyWords);
 
     }
 }
