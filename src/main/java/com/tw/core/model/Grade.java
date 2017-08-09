@@ -1,5 +1,7 @@
 package com.tw.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Created by jxzhong on 2017/8/9.
  */
@@ -10,6 +12,13 @@ public class Grade {
     private Integer chineseScore;
     private Integer englishScore;
     private String stuNumber;
+
+    public Grade(Grade grade) {
+        this(grade.stuNumber, grade.mathsScore, grade.chineseScore, grade.englishScore, grade.programScore);
+    }
+
+    public Grade() {
+    }
 
     public Grade(String stuNumber, Integer mathsScore, Integer chineseScore, Integer englishScore, Integer programScore) {
         this.stuNumber = stuNumber;
@@ -55,6 +64,7 @@ public class Grade {
         this.stuNumber = stuNumber;
     }
 
+    @JsonIgnore
     public String getStuNumber() {
         return stuNumber;
     }

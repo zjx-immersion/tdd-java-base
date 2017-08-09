@@ -31,8 +31,12 @@ public class StudentResource {
         if (null == stu || null == stu.getName()) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        studentGradeService.addStudent(stu);
-        return  ResponseEntity.status(HttpStatus.CREATED).body(stu);
+        if(studentGradeService.addStudent(stu)){
+            return  ResponseEntity.status(HttpStatus.CREATED).body(stu);
+
+        }else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Student's number is exist!");
+        }
     }
 
     @GetMapping(value = "/{keyWords}"

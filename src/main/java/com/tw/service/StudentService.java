@@ -24,8 +24,16 @@ public class StudentService {
         this.gradeReportBuilder = gradeReportBuilder;
     }
 
-    public void addStudent(Student stu) {
-        this.studentRepository.addStudents(stu);
+    public Boolean addStudent(Student stu) {
+        try {
+            if (this.studentRepository.isExist(stu.getNumber())) {
+                throw new Exception("This student number is exist!");
+            }
+            this.studentRepository.addStudents(stu);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public List<Student> findAllStudents() {

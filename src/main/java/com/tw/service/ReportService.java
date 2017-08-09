@@ -35,6 +35,7 @@ public class ReportService {
 
     public Gradereport generateReportForAllStudents() {
 
-        return this.gradeReportBuilder.buildIndicatedStuReport(this.studentService.findAllStudents());
+        return this.gradeReportBuilder.buildStudentGradeReport(this.studentService.findAllStudents(),
+                this.gradeService.findAllGrades());
     }
 }

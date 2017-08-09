@@ -4,7 +4,9 @@ import com.tw.core.model.Grade;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by jxzhong on 2017/8/9.
@@ -37,5 +39,9 @@ public class GradeRepository {
                 .filter(g -> g.getStuNumber().equals(stuNubmer))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public List<Grade> findAll() {
+        return this.grades.stream().map(Grade::new).collect(Collectors.toList());
     }
 }

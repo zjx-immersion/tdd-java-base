@@ -6,6 +6,8 @@ import com.tw.core.respository.GradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by jxzhong on 2017/8/9.
  */
@@ -46,4 +48,8 @@ public class GradeService {
         return grade;
     }
 
+    public List<Grade> findAllGrades() {
+
+        return this.gradeRepository.findAll();
+    }
 }

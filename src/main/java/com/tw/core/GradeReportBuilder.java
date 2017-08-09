@@ -5,6 +5,7 @@ import com.tw.core.model.Gradereport;
 import com.tw.core.model.Student;
 import com.tw.core.model.StudentGradeItem;
 import com.tw.core.respository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class GradeReportBuilder {
     public GradeReportBuilder() {
     }
 
+    @Autowired
     public GradeReportBuilder(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
