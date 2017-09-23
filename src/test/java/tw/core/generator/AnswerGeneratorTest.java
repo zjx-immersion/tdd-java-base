@@ -1,3 +1,5 @@
+package tw.core.generator;
+
 import tw.core.Answer;
 import tw.core.exception.OutOfRangeAnswerException;
 import tw.core.generator.AnswerGenerator;

@@ -1,7 +1,8 @@
-package tw.core.generator;
+package tw.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import tw.core.generator.RandomIntGenerator;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
