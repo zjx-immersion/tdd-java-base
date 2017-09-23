@@ -16,7 +16,6 @@ import static org.mockito.Mockito.when;
 
 public class GameTest {
 
-
     private final Answer actualAnswer = Answer.createAnswer("1 2 3 4");
     private Game game;
 
@@ -29,11 +28,14 @@ public class GameTest {
 
     @Test
     public void should_get_record_of_every_guess_result_when_call_guessHistory() {
+        //given
         game.guess(Answer.createAnswer("2 1 6 7"));
         game.guess(Answer.createAnswer("1 2 3 4"));
 
+        //when
         List<GuessResult> guessResults = game.guessHistory();
 
+        //then
         assertThat(guessResults.size(), is(2));
         assertThat(guessResults.get(0).getResult(), is("0A2B"));
         assertThat(guessResults.get(0).getInputAnswer().toString(), is("2 1 6 7"));
