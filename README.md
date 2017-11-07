@@ -1,2 +1,8 @@
-#TDD Practice Code Base
-This project is a empty code stack for quick start TDD coding
+# 井字游戏
+## 需求：
+"井字游戏"是两个人使用纸和铅笔玩的一种游戏，双方轮流在一个3 * 3
+的网格中画X和O，最先在水平、垂直或对角线上将自己的3个标记连起来的
+玩家获胜。
+
+￼![](./img/game_steps.png)
+有关这款游戏的更详细信息，请参与维基百科：http://en.wikipedia.org/wiki/Tic-tac-toe
