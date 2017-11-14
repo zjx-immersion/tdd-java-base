@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Arrays;
+
 /**
  * Created by jxzhong on 2017/11/8.
  */
@@ -15,24 +17,53 @@ public class TicTacToeGame {
     public TicTacToeGame() {
     }
 
-    public void play(int x, int y) {
-        checkAxis(x, "X is outside board");
-        checkAxis(y, "Y is outside board");
+    public String play(int x, int y) {
+        x--;
+        y--;
+
+        checkAxis(x, "X Axis is outside board");
+        checkAxis(y, "Y Axis is outside board");
 
         arrangePlayer();
-        setOnBoard(board[x], y);
+        setOnBoard(x, y);
+
+        Boolean isWin = judgeWin();
+        String displayInfo = buildDisplayInfo(isWin);
+
+        return displayInfo;
     }
 
-    private void setOnBoard(Character[] characters, int y) {
-        if (characters[y] != emptyPlaceholder) {
+    private String buildDisplayInfo(Boolean isWin) {
+        String displayInfo = String.format("%1$s Please Continue to play"
+                , this.getNextPlayer().toString());
+        if (isWin) {
+            displayInfo = String.format("%1$s Win", this.currentPlayer.toString());
+        }
+        return displayInfo;
+    }
+
+    private Boolean judgeWin() {
+        Boolean lineMatch = false;
+        for (Character[] horizontalArr : this.board) {
+            lineMatch = Arrays.stream(horizontalArr)
+                    .allMatch(value -> value.equals(this.currentPlayer));
+            if (lineMatch) {
+                break;
+            }
+        }
+        return lineMatch;
+    }
+
+    private void setOnBoard(int x, int y) {
+        if (board[x][y] != emptyPlaceholder) {
             throw new RuntimeException("This place has alrealy been hold");
         }
 
-        characters[y] = 'X';
+        board[x][y] = this.currentPlayer;
     }
 
     private void checkAxis(int x, String message) {
-        if (x < 1 || x > 3) {
+        if (x < 0 || x > 3) {
             throw new RuntimeException(message);
         }
     }
