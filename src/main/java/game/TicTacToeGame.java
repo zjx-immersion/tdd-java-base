@@ -9,6 +9,8 @@ public class TicTacToeGame {
 
 
     private static final int SIZE = 3;
+    private static final Character PLAYER_O = 'O';
+    private static final Character PLAYER_X = 'X';
     private Character emptyPlaceholder = '\0';
     private Character[][] board = {{emptyPlaceholder, emptyPlaceholder, emptyPlaceholder},
             {emptyPlaceholder, emptyPlaceholder, emptyPlaceholder},
@@ -74,14 +76,15 @@ public class TicTacToeGame {
     }
 
     public Character getNextPlayer() {
-        return this.currentPlayer.equals('X') ? 'O' : 'X';
+
+        return this.currentPlayer.equals(PLAYER_X) ? PLAYER_O : PLAYER_X;
     }
 
     private void arrangePlayer() {
-        if ('X' != this.currentPlayer) {
-            this.currentPlayer = 'X';
+        if (!this.currentPlayer.equals(PLAYER_X)) {
+            this.currentPlayer = PLAYER_X;
         } else {
-            this.currentPlayer = 'O';
+            this.currentPlayer = PLAYER_O;
         }
     }
 }
