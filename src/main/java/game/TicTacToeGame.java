@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class TicTacToeGame {
 
 
+    private static final int SIZE = 3;
     private Character emptyPlaceholder = '\0';
     private Character[][] board = {{emptyPlaceholder, emptyPlaceholder, emptyPlaceholder},
             {emptyPlaceholder, emptyPlaceholder, emptyPlaceholder},
@@ -44,13 +45,16 @@ public class TicTacToeGame {
 
     private Boolean judgeWin() {
         Boolean lineMatch = false;
-        for (Character[] horizontalArr : this.board) {
-            lineMatch = Arrays.stream(horizontalArr)
-                    .allMatch(value -> value.equals(this.currentPlayer));
-            if (lineMatch) {
-                break;
+
+        for (int i = 0; i < SIZE; i++) {
+            int totalOfLine = this.currentPlayer * 3;
+            boolean isHorizonalAxisLineWithSamePieces = board[i][0] + board[i][1] + board[i][1] == totalOfLine;
+            boolean isVerticalAxisLineWithSamePieces = board[0][i] + board[1][i] + board[2][i] == totalOfLine;
+            if (isHorizonalAxisLineWithSamePieces || isVerticalAxisLineWithSamePieces) {
+                lineMatch = true;
             }
         }
+
         return lineMatch;
     }
 
@@ -63,7 +67,8 @@ public class TicTacToeGame {
     }
 
     private void checkAxis(int x, String message) {
-        if (x < 0 || x > 3) {
+
+        if (x < 0 || x > SIZE) {
             throw new RuntimeException(message);
         }
     }

@@ -96,10 +96,12 @@ public class TicTacToeGameTest {
         ticTacToeGame.play(2, 2);
         ticTacToeGame.play(3, 1);
 
-        int a = 'X';
-        int b = 'O';
+
         //when
         //then
         assertThat(ticTacToeGame.play(3, 2)).isEqualTo("O Win");
     }
+
+    //todo: diagonal win
+    //todo: game draw
 }
