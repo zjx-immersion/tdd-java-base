@@ -113,7 +113,7 @@ public class TicTacToeGameTest {
         ticTacToeGame.play(2, 3);
         //when
         //then
-        assertThat(ticTacToeGame.play(3, 1)).isEqualTo("X Win");
+        assertThat(ticTacToeGame.play(3, 3)).isEqualTo("X Win");
 
     }
 

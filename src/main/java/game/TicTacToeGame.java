@@ -41,7 +41,8 @@ public class TicTacToeGame {
                 , this.getNextPlayer().toString());
         if (isWin) {
             displayInfo = String.format("%1$s Win", this.currentPlayer.toString());
-        } else if (Arrays.stream(board).allMatch(v -> !v.equals('\0'))) {
+        }
+        if (!Arrays.stream(board).anyMatch(arr -> Arrays.stream(arr).anyMatch(v -> v.equals('\0')))) {
             displayInfo = "Game Draw";
         }
         return displayInfo;
