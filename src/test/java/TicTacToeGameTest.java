@@ -103,5 +103,49 @@ public class TicTacToeGameTest {
     }
 
     //todo: diagonal win
+
+    @Test
+    public void should_return_win_when_positive_diagonal_line_filled_3_smae_piece() throws Exception {
+        //given
+        ticTacToeGame.play(1, 1);
+        ticTacToeGame.play(1, 2);
+        ticTacToeGame.play(2, 2);
+        ticTacToeGame.play(2, 3);
+        //when
+        //then
+        assertThat(ticTacToeGame.play(3, 1)).isEqualTo("X Win");
+
+    }
+
+    @Test
+    public void should_return_win_when_negative_diagonal_line_filled_3_smae_piece() throws Exception {
+        //given
+        ticTacToeGame.play(1, 3);
+        ticTacToeGame.play(1, 2);
+        ticTacToeGame.play(2, 2);
+        ticTacToeGame.play(2, 3);
+        //when
+        //then
+        assertThat(ticTacToeGame.play(3, 1)).isEqualTo("X Win");
+
+    }
+
+
     //todo: game draw
+    @Test
+    public void should_return_game_draw_when_negative_diagonal_line_filled_3_smae_piece() throws Exception {
+        //given
+        ticTacToeGame.play(1, 3);
+        ticTacToeGame.play(1, 1);
+        ticTacToeGame.play(2, 1);
+        ticTacToeGame.play(2, 2);
+        ticTacToeGame.play(3, 1);
+        ticTacToeGame.play(2, 3);
+        ticTacToeGame.play(1, 2);
+        ticTacToeGame.play(3, 2);
+        //when
+        //then
+        assertThat(ticTacToeGame.play(3, 3)).isEqualTo("Game Draw");
+
+    }
 }

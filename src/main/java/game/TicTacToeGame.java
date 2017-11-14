@@ -41,6 +41,8 @@ public class TicTacToeGame {
                 , this.getNextPlayer().toString());
         if (isWin) {
             displayInfo = String.format("%1$s Win", this.currentPlayer.toString());
+        } else if (Arrays.stream(board).allMatch(v -> !v.equals('\0'))) {
+            displayInfo = "Game Draw";
         }
         return displayInfo;
     }
@@ -48,12 +50,21 @@ public class TicTacToeGame {
     private Boolean judgeWin() {
         Boolean lineMatch = false;
 
+        int totalOfLine = this.currentPlayer * 3;
+
+        boolean isPositiveDiagonalLineWithSamePieces = board[0][0] + board[1][1] + board[2][2] == totalOfLine;
+        boolean isNegativeDiagonalLineWithSamePieces = board[0][2] + board[1][1] + board[2][0] == totalOfLine;
+
+        if (isPositiveDiagonalLineWithSamePieces || isNegativeDiagonalLineWithSamePieces) {
+            return true;
+        }
+
         for (int i = 0; i < SIZE; i++) {
-            int totalOfLine = this.currentPlayer * 3;
             boolean isHorizonalAxisLineWithSamePieces = board[i][0] + board[i][1] + board[i][1] == totalOfLine;
             boolean isVerticalAxisLineWithSamePieces = board[0][i] + board[1][i] + board[2][i] == totalOfLine;
             if (isHorizonalAxisLineWithSamePieces || isVerticalAxisLineWithSamePieces) {
                 lineMatch = true;
+
             }
         }
 
