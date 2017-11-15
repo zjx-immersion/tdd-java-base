@@ -21,14 +21,12 @@ public class TicTacToeGame {
     }
 
     public String play(int x, int y) {
-        x--;
-        y--;
 
         checkAxis(x, "X Axis is outside board");
         checkAxis(y, "Y Axis is outside board");
 
         arrangePlayer();
-        setOnBoard(x, y);
+        setOnBoard(x - 1, y - 1);
 
         return buildDisplayInfo(judgeWin());
     }
@@ -93,7 +91,7 @@ public class TicTacToeGame {
 
     private void checkAxis(int x, String message) {
 
-        if (x < 0 || x > SIZE) {
+        if (x < 1 || x > SIZE) {
             throw new RuntimeException(message);
         }
     }
