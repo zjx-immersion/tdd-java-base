@@ -100,8 +100,6 @@ public class TicTacToeGameTest {
         assertThat(ticTacToeGame.play(3, 2)).isEqualTo("O Win");
     }
 
-    //todo: diagonal win
-
     @Test
     public void should_return_win_when_positive_diagonal_line_filled_3_smae_piece() throws Exception {
         //given
@@ -129,7 +127,6 @@ public class TicTacToeGameTest {
     }
 
 
-    //todo: game draw
     @Test
     public void should_return_game_draw_when_negative_diagonal_line_filled_3_smae_piece() throws Exception {
         //given
