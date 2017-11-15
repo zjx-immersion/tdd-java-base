@@ -1,5 +1,7 @@
 package game;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.Arrays;
 
 /**
@@ -11,8 +13,8 @@ public class TicTacToeGame {
     private static final int SIZE = 3;
     private static final Character PLAYER_O = 'O';
     private static final Character PLAYER_X = 'X';
-    private Character emptyPlaceholder = '\0';
-    private Character[][] board = {{emptyPlaceholder, emptyPlaceholder, emptyPlaceholder},
+    private final Character emptyPlaceholder = '\0';
+    private final Character[][] board = {{emptyPlaceholder, emptyPlaceholder, emptyPlaceholder},
             {emptyPlaceholder, emptyPlaceholder, emptyPlaceholder},
             {emptyPlaceholder, emptyPlaceholder, emptyPlaceholder}};
     private Character currentPlayer = '\0';
@@ -30,10 +32,7 @@ public class TicTacToeGame {
         arrangePlayer();
         setOnBoard(x, y);
 
-        Boolean isWin = judgeWin();
-        String displayInfo = buildDisplayInfo(isWin);
-
-        return displayInfo;
+        return buildDisplayInfo(judgeWin());
     }
 
     private String buildDisplayInfo(Boolean isWin) {
@@ -42,34 +41,48 @@ public class TicTacToeGame {
         if (isWin) {
             displayInfo = String.format("%1$s Win", this.currentPlayer.toString());
         }
-        if (!Arrays.stream(board).anyMatch(arr -> Arrays.stream(arr).anyMatch(v -> v.equals('\0')))) {
+        if (!isWholeBoardFilled()) {
             displayInfo = "Game Draw";
         }
         return displayInfo;
     }
 
+    private boolean isWholeBoardFilled() {
+        return Arrays.stream(board).anyMatch(
+                arr -> Arrays.stream(arr).anyMatch(
+                        v -> v.equals(emptyPlaceholder)));
+    }
+
     private Boolean judgeWin() {
-        Boolean lineMatch = false;
 
         int totalOfLine = this.currentPlayer * 3;
 
-        boolean isPositiveDiagonalLineWithSamePieces = board[0][0] + board[1][1] + board[2][2] == totalOfLine;
-        boolean isNegativeDiagonalLineWithSamePieces = board[0][2] + board[1][1] + board[2][0] == totalOfLine;
+        boolean diagonalLineMatch = CheckDiagonalLine(totalOfLine);
 
-        if (isPositiveDiagonalLineWithSamePieces || isNegativeDiagonalLineWithSamePieces) {
-            return true;
-        }
+        boolean verAndHorLineMatch = checkVerAndHorLine(totalOfLine);
 
+        return diagonalLineMatch || verAndHorLineMatch;
+    }
+
+    private Boolean checkVerAndHorLine(int totalOfLine) {
+        boolean lineMatch = false;
         for (int i = 0; i < SIZE; i++) {
-            boolean isHorizonalAxisLineWithSamePieces = board[i][0] + board[i][1] + board[i][1] == totalOfLine;
+            boolean isHorizonalAxisLineWithSamePieces = board[i][0] + board[i][1] + board[i][2] == totalOfLine;
             boolean isVerticalAxisLineWithSamePieces = board[0][i] + board[1][i] + board[2][i] == totalOfLine;
             if (isHorizonalAxisLineWithSamePieces || isVerticalAxisLineWithSamePieces) {
                 lineMatch = true;
-
+                break;
             }
         }
-
         return lineMatch;
+    }
+
+    private boolean CheckDiagonalLine(int totalOfLine) {
+        boolean isPositiveDiagonalLineWithSamePieces = board[0][0] + board[1][1] + board[2][2] == totalOfLine;
+        boolean isNegativeDiagonalLineWithSamePieces = board[0][2] + board[1][1] + board[2][0] == totalOfLine;
+
+        return isPositiveDiagonalLineWithSamePieces || isNegativeDiagonalLineWithSamePieces;
+
     }
 
     private void setOnBoard(int x, int y) {

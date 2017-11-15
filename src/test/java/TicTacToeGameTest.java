@@ -14,6 +14,8 @@ public class TicTacToeGameTest {
     @Rule
     public ExpectedException expection = ExpectedException.none();
     private TicTacToeGame ticTacToeGame;
+    private String PLAYER_O_CONTINUE_RETURN_STR = "O Please Continue to play";
+    private String PLAYER_X_CONTINUE_RETURN_STR = "X Please Continue to play";
 
     @Before
     public void beforeMethod() throws Exception {
@@ -66,39 +68,35 @@ public class TicTacToeGameTest {
     @Test
     public void should_return_continue_when_no_three_same_piece_in_a_line() throws Exception {
         //given
-        ticTacToeGame.play(1, 1);
-        ticTacToeGame.play(1, 2);
-
         //when
         //then
-        assertThat(ticTacToeGame.play(1, 3)).isEqualTo("O Please Continue to play");
+        assertThat(ticTacToeGame.play(1, 1)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 2)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(1, 2)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
     }
 
     @Test
     public void should_return_win_when_horizontal_axis_filled_3_same_piece() throws Exception {
         //given
-        ticTacToeGame.play(2, 1);
-        ticTacToeGame.play(3, 1);
-        ticTacToeGame.play(2, 2);
-        ticTacToeGame.play(3, 2);
-
         //when
         //then
+        assertThat(ticTacToeGame.play(2, 1)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(3, 1)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 2)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(3, 2)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
         assertThat(ticTacToeGame.play(2, 3)).isEqualTo("X Win");
     }
 
     @Test
     public void should_return_win_when_vertical_axis_filled_3_same_piece() throws Exception {
         //given
-        ticTacToeGame.play(1, 1);
-        ticTacToeGame.play(1, 2);
-        ticTacToeGame.play(1, 3);
-        ticTacToeGame.play(2, 2);
-        ticTacToeGame.play(3, 1);
-
-
         //when
         //then
+        assertThat(ticTacToeGame.play(1, 1)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(1, 2)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(1, 3)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 2)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(3, 1)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
         assertThat(ticTacToeGame.play(3, 2)).isEqualTo("O Win");
     }
 
@@ -107,12 +105,12 @@ public class TicTacToeGameTest {
     @Test
     public void should_return_win_when_positive_diagonal_line_filled_3_smae_piece() throws Exception {
         //given
-        ticTacToeGame.play(1, 1);
-        ticTacToeGame.play(1, 2);
-        ticTacToeGame.play(2, 2);
-        ticTacToeGame.play(2, 3);
         //when
         //then
+        assertThat(ticTacToeGame.play(1, 1)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(1, 2)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 2)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 3)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
         assertThat(ticTacToeGame.play(3, 3)).isEqualTo("X Win");
 
     }
@@ -120,12 +118,12 @@ public class TicTacToeGameTest {
     @Test
     public void should_return_win_when_negative_diagonal_line_filled_3_smae_piece() throws Exception {
         //given
-        ticTacToeGame.play(1, 3);
-        ticTacToeGame.play(1, 2);
-        ticTacToeGame.play(2, 2);
-        ticTacToeGame.play(2, 3);
         //when
         //then
+        assertThat(ticTacToeGame.play(1, 3)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(1, 2)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 2)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 3)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
         assertThat(ticTacToeGame.play(3, 1)).isEqualTo("X Win");
 
     }
@@ -135,16 +133,16 @@ public class TicTacToeGameTest {
     @Test
     public void should_return_game_draw_when_negative_diagonal_line_filled_3_smae_piece() throws Exception {
         //given
-        ticTacToeGame.play(1, 3);
-        ticTacToeGame.play(1, 1);
-        ticTacToeGame.play(2, 1);
-        ticTacToeGame.play(2, 2);
-        ticTacToeGame.play(3, 1);
-        ticTacToeGame.play(2, 3);
-        ticTacToeGame.play(1, 2);
-        ticTacToeGame.play(3, 2);
         //when
         //then
+        assertThat(ticTacToeGame.play(1, 3)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(1, 1)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 1)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 2)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(3, 1)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(2, 3)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(1, 2)).isEqualTo(PLAYER_O_CONTINUE_RETURN_STR);
+        assertThat(ticTacToeGame.play(3, 2)).isEqualTo(PLAYER_X_CONTINUE_RETURN_STR);
         assertThat(ticTacToeGame.play(3, 3)).isEqualTo("Game Draw");
 
     }
