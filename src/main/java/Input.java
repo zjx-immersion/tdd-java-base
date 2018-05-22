@@ -1,11 +1,11 @@
 /**
  * Created by jxzhong on 2017/7/26.
  */
-public class Word {
+public class Input {
     private String value;
     private int count;
 
-    public Word(String w, int i) {
+    public Input(String w, int i) {
         this.value = w;
         this.count = i;
     }
@@ -14,7 +14,7 @@ public class Word {
         return this.value;
     }
 
-    public int getCount() {
+    public int getWordCount() {
         return this.count;
     }
 }
