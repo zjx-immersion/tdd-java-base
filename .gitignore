@@ -4,3 +4,8 @@
 tdd-java-base.*
 build
 out
+.classpath
+.project
+.settings/
+.vscode/
+bin/
