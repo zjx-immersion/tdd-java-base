@@ -15,7 +15,7 @@ apply plugin: 'jacoco'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-
+mainClassName = 'App'
 jacocoTestReport {
   reports {
     xml.enabled false

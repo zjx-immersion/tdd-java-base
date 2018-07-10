@@ -4,19 +4,24 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class Main {
+public class App {
     public static void main(String[] args) {
         test_init_stream();
 
         test_map_operation();
 
 //        complex_api();
+        stream_operate_object();
+    }
+
+    private static void stream_operate_object() {
         List<Person> persons = Arrays.asList(new Person("Jason", 25),
                 new Person("Tim", 35),
                 new Person("Aima", 18),
                 new Person("James", 18),
                 new Person("Tony", 25));
-        Map<Integer, List<Person>> collect = persons.stream().collect(Collectors.groupingBy(Person::getAge));
+        Map<Integer, List<Person>> collect = persons.stream()
+                .collect(Collectors.groupingBy(Person::getAge));
         System.out.println(collect);
 
         Double averageAge = persons.stream().collect(Collectors.averagingInt(Person::getAge));
@@ -41,7 +46,8 @@ public class Main {
                 "Rose Thompson", "Rachel Barnes", "Eugene Ramirez", "Earl Flores", "Janice Reed", "Sarah Miller",
                 "Patricia Kelly", "Carl Hall", "Craig Wright", "Martha Phillips", "Thomas Howard", "Steve Martinez",
                 "Diana Bailey", "Kathleen Hughes", "Russell Anderson", "Theresa Perry", "Anna Cox"};
-        List<String> ls = Arrays.asList(names).parallelStream()
+        List<String> ls = Arrays.asList(names)
+                .parallelStream()
                 .filter(s -> s.startsWith("C"))
                 .collect(Collectors.toList());
         System.out.println(ls.toString());
